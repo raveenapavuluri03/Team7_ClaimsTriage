@@ -1,0 +1,40 @@
+{
+  "claim_id": "TC1",
+  "policy": {
+    "policy_number": 429027,
+    "tier": "Auto Basic",
+    "limit": 100000,
+    "deductible": 1000.0,
+    "bind_date": "1990-02-03"
+  },
+  "relevant_policy_clauses": [
+    "Documentation: vehicle theft and parked car claims above $10,000 require a police report; otherwise an adjuster must review.",
+    "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+    "Deductible: the deductible on the policy record is subtracted from every covered payout."
+  ],
+  "extracted_claim": {
+    "incident_date": "2015-02-27",
+    "incident_type": "Multi-vehicle Collision",
+    "amount": 51590.0,
+    "police_report": "YES",
+    "vehicle": "2015 Audi A5",
+    "summary": "A multi-vehicle collision occurred in Columbus, VA, involving a 2015 Audi A5, resulting in total loss and injuries to two people."
+  },
+  "form_claimed_amount": 51590.0,
+  "coverage": {
+    "result": "COVERED",
+    "payout": 50590.0,
+    "reasons": [
+      "Covered under Auto Basic; payout = claim - deductible."
+    ]
+  },
+  "risk": {
+    "score": 0.165,
+    "band": "LOW",
+    "method": "ml_logistic_regression",
+    "flags": []
+  },
+  "risk_explanation": "Based on the provided information, the following fraud/risk indicators are noted:\n\nThe presence of a police report confirms that the incident was reported to law enforcement, which is a standard procedure in such cases. However, there is no indication of any red flags or suspicious activity associated with this claim, as evidenced by the low risk score and absence of rule flags. The fact that the coverage is confirmed and the payout calculation appears straightforward suggests that the claim is being processed according to normal procedures.",
+  "suggested_next_action": "Standard review",
+  "decision": "PENDING - human adjuster must approve or deny"
+}

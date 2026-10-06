@@ -1,0 +1,44 @@
+{
+  "claim_id": "TC2",
+  "policy": {
+    "policy_number": 104594,
+    "tier": "Auto Standard",
+    "limit": 250000,
+    "deductible": 1000.0,
+    "bind_date": "2006-10-12"
+  },
+  "relevant_policy_clauses": [
+    "Deductible: the deductible on the policy record is subtracted from every covered payout.",
+    "Exclusion: incidents that occur before the policy bind (start) date are not covered.",
+    "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft."
+  ],
+  "extracted_claim": {
+    "incident_date": "2015-01-02",
+    "incident_type": "Multi-vehicle Collision",
+    "amount": null,
+    "police_report": "NO",
+    "vehicle": "2003 Saab 95",
+    "summary": "A multi-vehicle collision occurred in Arlington, SC, involving a 2003 Saab 95 with major damage."
+  },
+  "form_claimed_amount": 64100.0,
+  "coverage": {
+    "result": "COVERED",
+    "payout": 63100.0,
+    "reasons": [
+      "Covered under Auto Standard; payout = claim - deductible."
+    ]
+  },
+  "risk": {
+    "score": 0.829,
+    "band": "HIGH",
+    "method": "ml_logistic_regression",
+    "flags": [
+      "Major damage reported",
+      "No police report on file",
+      "Claim amount above $60,000"
+    ]
+  },
+  "risk_explanation": "Based on the provided information, the following fraud/risk indicators are present:\n\nThe claim involves major damage to a vehicle, which may indicate a potential exaggeration of damages. The absence of a police report on file raises concerns about the validity of the incident. Additionally, the claim amount exceeds $60,000, which is above average and warrants further investigation.",
+  "suggested_next_action": "Investigate before decision (high risk)",
+  "decision": "PENDING - human adjuster must approve or deny"
+}

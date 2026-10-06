@@ -1,0 +1,44 @@
+{
+  "claim_id": "TC3",
+  "policy": {
+    "policy_number": 342868,
+    "tier": "Auto Standard",
+    "limit": 250000,
+    "deductible": 2000.0,
+    "bind_date": "2006-06-27"
+  },
+  "relevant_policy_clauses": [
+    "Documentation: vehicle theft and parked car claims above $15,000 require a police report; otherwise an adjuster must review.",
+    "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+    "Deductible: the deductible on the policy record is subtracted from every covered payout."
+  ],
+  "extracted_claim": {
+    "incident_date": "2015-01-21",
+    "incident_type": "Vehicle Theft",
+    "amount": 40000.0,
+    "police_report": "NO",
+    "vehicle": "2007 Mercedes E400",
+    "summary": "A 2007 Mercedes E400 was stolen in Riverwood, VA, resulting in minor damage."
+  },
+  "form_claimed_amount": 40000.0,
+  "coverage": {
+    "result": "COVERED",
+    "payout": 38000.0,
+    "reasons": [
+      "Vehicle Theft over $15,000 without a police report.",
+      "Coverage confirmed by reviewer adjuster_1."
+    ]
+  },
+  "risk": {
+    "score": 0.446,
+    "band": "MEDIUM",
+    "method": "ml_logistic_regression",
+    "flags": [
+      "No police report on file",
+      "No witnesses"
+    ]
+  },
+  "risk_explanation": "Based on the claim summary, the following fraud/risk indicators have been identified:\n\n* The absence of a police report, which is a requirement for coverage under this policy.\n* The lack of witness statements, which could indicate that the theft was staged or fabricated.\n\nThese indicators contribute to a medium risk score of 0.446, suggesting that further investigation may be warranted to verify the authenticity of the claim.",
+  "suggested_next_action": "Review supporting documents",
+  "decision": "PENDING - human adjuster must approve or deny"
+}

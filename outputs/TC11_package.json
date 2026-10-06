@@ -1,0 +1,43 @@
+{
+  "claim_id": "TC11",
+  "policy": {
+    "policy_number": 596785,
+    "tier": "Auto Premium",
+    "limit": 500000,
+    "deductible": 2000.0,
+    "bind_date": "2014-03-04"
+  },
+  "relevant_policy_clauses": [
+    "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+    "Documentation: vehicle theft and parked car claims above $25,000 require a police report; otherwise an adjuster must review.",
+    "Deductible: the deductible on the policy record is subtracted from every covered payout."
+  ],
+  "extracted_claim": {
+    "incident_date": "2015-02-15",
+    "incident_type": "Single Vehicle Collision",
+    "amount": 91650.0,
+    "police_report": "NO",
+    "vehicle": "2011 Accura TL",
+    "summary": "A single vehicle collision occurred in Northbrook, SC, involving a 2011 Accura TL and resulting in minor damage and injuries."
+  },
+  "form_claimed_amount": 91650.0,
+  "coverage": {
+    "result": "COVERED",
+    "payout": 89650.0,
+    "reasons": [
+      "Covered under Auto Premium; payout = claim - deductible."
+    ]
+  },
+  "risk": {
+    "score": 0.279,
+    "band": "LOW",
+    "method": "ml_logistic_regression",
+    "flags": [
+      "No police report on file",
+      "Claim amount above $60,000"
+    ]
+  },
+  "risk_explanation": "Based on the provided information, two potential fraud/risk indicators have been identified for this claim:\n\n1. The absence of a police report may indicate that the incident was not reported to law enforcement, which could be a red flag for insurance claims adjusters.\n2. The claim amount exceeding $60,000 is also flagged as a risk indicator, suggesting that the damage or injuries may be more severe than initially reported.\n\nThese indicators warrant further investigation and review of the claim details to determine their validity and potential impact on the claim's legitimacy.",
+  "suggested_next_action": "Standard review",
+  "decision": "PENDING - human adjuster must approve or deny"
+}

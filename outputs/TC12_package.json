@@ -1,0 +1,42 @@
+{
+  "claim_id": "TC12",
+  "policy": {
+    "policy_number": 319232,
+    "tier": "Auto Standard",
+    "limit": 250000,
+    "deductible": 2000.0,
+    "bind_date": "1997-10-31"
+  },
+  "relevant_policy_clauses": [
+    "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+    "Documentation: vehicle theft and parked car claims above $15,000 require a police report; otherwise an adjuster must review.",
+    "Deductible: the deductible on the policy record is subtracted from every covered payout."
+  ],
+  "extracted_claim": {
+    "incident_date": "2015-01-17",
+    "incident_type": "Single Vehicle Collision",
+    "amount": 90000.0,
+    "police_report": "YES",
+    "vehicle": "2015 Ford Fusion",
+    "summary": "A single vehicle collision occurred in Hillsdale, NY, involving a 2015 Ford Fusion with minor damage and one injured person."
+  },
+  "form_claimed_amount": 90000.0,
+  "coverage": {
+    "result": "COVERED",
+    "payout": 88000.0,
+    "reasons": [
+      "Covered under Auto Standard; payout = claim - deductible."
+    ]
+  },
+  "risk": {
+    "score": 0.206,
+    "band": "LOW",
+    "method": "ml_logistic_regression",
+    "flags": [
+      "Claim amount above $60,000"
+    ]
+  },
+  "risk_explanation": "Based on the provided information, the following fraud/risk indicators are present:\n\nThe claim amount exceeds $60,000, which may indicate a potential over-estimation of damages or an attempt to inflate the claim value. Additionally, the risk score is 0.206, classified as LOW, but this may warrant further investigation due to the high claim amount.",
+  "suggested_next_action": "Standard review",
+  "decision": "PENDING - human adjuster must approve or deny"
+}

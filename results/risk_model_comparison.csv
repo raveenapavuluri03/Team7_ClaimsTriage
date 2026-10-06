@@ -1,0 +1,3 @@
+method,accuracy,precision,recall,f1,roc_auc
+ML: Logistic Regression,0.81,0.59,0.735,0.655,0.814
+Rule-based flags,0.82,0.623,0.673,0.647,0.779

@@ -1,0 +1,43 @@
+{
+  "claim_id": "TC4",
+  "policy": {
+    "policy_number": 626808,
+    "tier": "Auto Basic",
+    "limit": 100000,
+    "deductible": 1000.0,
+    "bind_date": "2012-10-26"
+  },
+  "relevant_policy_clauses": [
+    "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+    "Documentation: vehicle theft and parked car claims above $10,000 require a police report; otherwise an adjuster must review.",
+    "Deductible: the deductible on the policy record is subtracted from every covered payout."
+  ],
+  "extracted_claim": {
+    "incident_date": "2015-01-08",
+    "incident_type": "Parked Car",
+    "amount": 7280.0,
+    "police_report": "NO",
+    "vehicle": "2010 Toyota Highlander",
+    "summary": "A parked 2010 Toyota Highlander was involved in an incident in Springfield, SC, resulting in minor damage and one person injured."
+  },
+  "form_claimed_amount": 7280.0,
+  "coverage": {
+    "result": "COVERED",
+    "payout": 6280.0,
+    "reasons": [
+      "Covered under Auto Basic; payout = claim - deductible."
+    ]
+  },
+  "risk": {
+    "score": 0.177,
+    "band": "LOW",
+    "method": "ml_logistic_regression",
+    "flags": [
+      "No police report on file",
+      "No authorities contacted"
+    ]
+  },
+  "risk_explanation": "Based on the provided information, the fraud/risk indicators for this claim include:\n\n* The absence of a police report, which may indicate that the incident was not reported to law enforcement or that it was not considered significant enough to warrant a report.\n* The fact that no authorities were contacted, which could suggest that the incident was minor and did not require official involvement.\n\nThese indicators are flagged by the risk assessment model as potential red flags for further investigation.",
+  "suggested_next_action": "Standard review",
+  "decision": "PENDING - human adjuster must approve or deny"
+}

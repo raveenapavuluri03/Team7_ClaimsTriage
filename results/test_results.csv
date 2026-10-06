@@ -1,0 +1,20 @@
+test,claim_id,case,expected,actual,pass,stopped_at,reason,retries,llm_calls,llm_latency_s,pipeline_s,output_tokens,note
+main,TC1,Clean covered claim (success path),COMPLETED_PENDING_ADJUSTER,COMPLETED_PENDING_ADJUSTER,True,S10,Review package ready; waiting for adjuster decision (H2).,{},2,55.1,55.2,187,
+main,TC2,Missing required field (claimed amount),PAUSED_MISSING_INFO,PAUSED_MISSING_INFO,True,S1,Missing required fields: ['form_claimed_amount']. Request them from the customer.,{},0,0.0,0.0,0,
+main,TC3,Coverage unclear (no police report) -> human review,ROUTED_TO_HUMAN,ROUTED_TO_HUMAN,True,S5,"Coverage AMBIGUOUS: Vehicle Theft over $15,000 without a police report. Routed to H1.",{},1,34.0,34.0,78,
+main,TC4,Invalid model output (forced) -> retries exhausted,ROUTED_TO_HUMAN,ROUTED_TO_HUMAN,True,S3,Model output invalid after 3 attempts. Routed to human exception review (H1).,{'S3_reprompt': 3},0,0.0,0.0,0,
+main,TC5,Narrative conflicts with form amount,ROUTED_TO_HUMAN,ROUTED_TO_HUMAN,True,S4,"Inconsistent submission: Amount mismatch: narrative $124,600 vs form $77,880 (>5%). Routed to H1.",{},1,16.7,16.7,84,
+main,TC6,Mixed claim,COMPLETED_PENDING_ADJUSTER,COMPLETED_PENDING_ADJUSTER,True,S10,Review package ready; waiting for adjuster decision (H2).,{},2,30.6,30.7,162,
+main,TC7,Mixed claim,COMPLETED_PENDING_ADJUSTER,COMPLETED_PENDING_ADJUSTER,True,S10,Review package ready; waiting for adjuster decision (H2).,{},2,53.5,53.5,181,
+main,TC8,Mixed claim,COMPLETED_PENDING_ADJUSTER,COMPLETED_PENDING_ADJUSTER,True,S10,Review package ready; waiting for adjuster decision (H2).,{},2,48.7,48.8,189,
+main,TC9,Mixed claim,COMPLETED_PENDING_ADJUSTER,COMPLETED_PENDING_ADJUSTER,True,S10,Review package ready; waiting for adjuster decision (H2).,{},2,49.6,49.6,185,
+main,TC10,Mixed claim,COMPLETED_PENDING_ADJUSTER,COMPLETED_PENDING_ADJUSTER,True,S10,Review package ready; waiting for adjuster decision (H2).,{},2,46.3,46.4,169,
+main,TC11,Mixed claim,COMPLETED_PENDING_ADJUSTER,COMPLETED_PENDING_ADJUSTER,True,S10,Review package ready; waiting for adjuster decision (H2).,{},2,51.0,51.1,194,
+main,TC12,Mixed claim,COMPLETED_PENDING_ADJUSTER,COMPLETED_PENDING_ADJUSTER,True,S10,Review package ready; waiting for adjuster decision (H2).,{},2,46.1,46.1,157,
+failure,TC1-API-OUTAGE,LLM API outage (simulated),ROUTED_TO_HUMAN,ROUTED_TO_HUMAN,True,S3,LLM unavailable after 3 attempts. Routed to human exception review (H1).,{'S3_api': 3},0,0.0,3.0,0,
+failure,TC1-MODEL-FAIL,Risk model error -> rule fallback,COMPLETED_PENDING_ADJUSTER,COMPLETED_PENDING_ADJUSTER,True,S10,Review package ready; waiting for adjuster decision (H2).,{},2,45.7,45.7,163,risk method used: rule_based_fallback
+resume,TC2,TC2 after customer adds missing amount,COMPLETED_PENDING_ADJUSTER,COMPLETED_PENDING_ADJUSTER,True,S10,Review package ready; waiting for adjuster decision (H2).,{},2,44.6,44.6,155,
+resume,TC3,TC3 after reviewer confirms coverage,COMPLETED_PENDING_ADJUSTER,COMPLETED_PENDING_ADJUSTER,True,S10,Review package ready; waiting for adjuster decision (H2).,{},2,47.2,47.2,160,
+resume,TC4,TC4 re-run after invalid output,extraction succeeds (passes S3),COMPLETED_PENDING_ADJUSTER,True,S10,Review package ready; waiting for adjuster decision (H2).,{'S3_reprompt': 3},2,47.0,47.1,175,"after S3 the claim follows normal rules, so it may still go to H1 at S5"
+resume,TC5,TC5 after reviewer corrects amount,COMPLETED_PENDING_ADJUSTER,COMPLETED_PENDING_ADJUSTER,True,S10,Review package ready; waiting for adjuster decision (H2).,{},2,31.1,31.1,173,
+decision,TC1,TC1 adjuster approves,APPROVED,APPROVED,True,S10,Review package ready; waiting for adjuster decision (H2).,{},2,55.1,55.2,187,

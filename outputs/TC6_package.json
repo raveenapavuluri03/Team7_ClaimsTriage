@@ -1,0 +1,43 @@
+{
+  "claim_id": "TC6",
+  "policy": {
+    "policy_number": 749325,
+    "tier": "Auto Premium",
+    "limit": 500000,
+    "deductible": 500.0,
+    "bind_date": "2000-03-22"
+  },
+  "relevant_policy_clauses": [
+    "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+    "Documentation: vehicle theft and parked car claims above $25,000 require a police report; otherwise an adjuster must review.",
+    "Deductible: the deductible on the policy record is subtracted from every covered payout."
+  ],
+  "extracted_claim": {
+    "incident_date": "2015-01-06",
+    "incident_type": "Multi-vehicle Collision",
+    "amount": 69300.0,
+    "police_report": "UNKNOWN",
+    "vehicle": "2010 Ford Escape",
+    "summary": "A multi-vehicle collision occurred in Columbus, SC, involving a 2010 Ford Escape with minor damage."
+  },
+  "form_claimed_amount": 69300.0,
+  "coverage": {
+    "result": "COVERED",
+    "payout": 68800.0,
+    "reasons": [
+      "Covered under Auto Premium; payout = claim - deductible."
+    ]
+  },
+  "risk": {
+    "score": 0.165,
+    "band": "LOW",
+    "method": "ml_logistic_regression",
+    "flags": [
+      "No police report on file",
+      "Claim amount above $60,000"
+    ]
+  },
+  "risk_explanation": "Based on the provided information, the fraud/risk indicators for this claim are:\n\nThe lack of a police report on file raises concerns about the validity and accuracy of the incident. Additionally, the claim amount exceeding $60,000 may indicate an atypical or potentially exaggerated loss. These factors contribute to a low risk score of 0.165, indicating some level of uncertainty surrounding the claim's legitimacy.",
+  "suggested_next_action": "Standard review",
+  "decision": "PENDING - human adjuster must approve or deny"
+}

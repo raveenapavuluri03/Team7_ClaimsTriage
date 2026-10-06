@@ -1,0 +1,43 @@
+{
+  "claim_id": "TC8",
+  "policy": {
+    "policy_number": 345539,
+    "tier": "Auto Basic",
+    "limit": 100000,
+    "deductible": 1000.0,
+    "bind_date": "2012-07-24"
+  },
+  "relevant_policy_clauses": [
+    "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+    "Documentation: vehicle theft and parked car claims above $10,000 require a police report; otherwise an adjuster must review.",
+    "Deductible: the deductible on the policy record is subtracted from every covered payout."
+  ],
+  "extracted_claim": {
+    "incident_date": "2015-02-17",
+    "incident_type": "Single Vehicle Collision",
+    "amount": 77000.0,
+    "police_report": "UNKNOWN",
+    "vehicle": "2004 Accura RSX",
+    "summary": "A single vehicle collision occurred in Riverwood, NY, involving a 2004 Accura RSX."
+  },
+  "form_claimed_amount": 77000.0,
+  "coverage": {
+    "result": "COVERED",
+    "payout": 76000.0,
+    "reasons": [
+      "Covered under Auto Basic; payout = claim - deductible."
+    ]
+  },
+  "risk": {
+    "score": 0.279,
+    "band": "LOW",
+    "method": "ml_logistic_regression",
+    "flags": [
+      "No police report on file",
+      "Claim amount above $60,000"
+    ]
+  },
+  "risk_explanation": "Based on the provided information, two potential fraud/risk indicators have been identified for this claim:\n\n1. The absence of a police report on file may indicate that the incident was not reported to law enforcement or that the report is missing.\n2. The claim amount exceeding $60,000 suggests that the damages may be higher than average for a 2004 Accura RSX, which could potentially raise suspicions about the extent of the damage.\n\nThese indicators are based on the data and do not imply any intentional wrongdoing by the policyholder.",
+  "suggested_next_action": "Standard review",
+  "decision": "PENDING - human adjuster must approve or deny"
+}

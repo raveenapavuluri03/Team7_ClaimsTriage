@@ -1,0 +1,21 @@
+prompt,claim_id,strict_valid,error,ok_date,ok_type,ok_amount,ok_police,ok_vehicle,field_accuracy,latency_s,output_tokens
+A,TC1,False,invalid JSON (Expecting value),True,True,True,True,True,1.0,16.815,119
+A,TC3,False,invalid JSON (Expecting value),True,True,True,True,True,1.0,14.771,115
+A,TC4,False,invalid JSON (Expecting value),True,False,True,True,True,0.8,15.051,116
+A,TC6,False,invalid JSON (Expecting value),True,True,True,True,True,1.0,13.579,110
+A,TC7,False,invalid JSON (Expecting value),True,True,True,True,True,1.0,15.104,111
+A,TC8,False,invalid JSON (Expecting value),False,False,False,True,False,0.2,18.949,129
+A,TC9,False,invalid JSON (Expecting value),True,True,True,True,True,1.0,14.592,110
+A,TC10,False,invalid JSON (Expecting value),False,False,False,True,False,0.2,15.572,116
+A,TC11,False,invalid JSON (Expecting value),True,True,True,True,True,1.0,15.462,107
+A,TC12,False,invalid JSON (Expecting value),True,True,True,True,True,1.0,12.522,84
+B,TC1,True,,True,True,True,True,True,1.0,33.501,90
+B,TC3,True,,True,True,True,True,True,1.0,14.759,78
+B,TC4,True,,True,True,True,True,True,1.0,14.334,84
+B,TC6,True,,True,True,True,True,True,1.0,13.444,81
+B,TC7,True,,True,True,True,True,True,1.0,14.659,83
+B,TC8,True,,True,True,True,True,True,1.0,13.582,81
+B,TC9,True,,True,True,True,True,True,1.0,13.733,79
+B,TC10,True,,True,True,True,True,True,1.0,14.688,85
+B,TC11,True,,True,True,True,True,True,1.0,15.095,86
+B,TC12,True,,True,True,True,True,True,1.0,15.578,84

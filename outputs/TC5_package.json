@@ -1,0 +1,43 @@
+{
+  "claim_id": "TC5",
+  "policy": {
+    "policy_number": 736882,
+    "tier": "Auto Basic",
+    "limit": 100000,
+    "deductible": 1000.0,
+    "bind_date": "1996-02-02"
+  },
+  "relevant_policy_clauses": [
+    "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+    "Documentation: vehicle theft and parked car claims above $10,000 require a police report; otherwise an adjuster must review.",
+    "Deductible: the deductible on the policy record is subtracted from every covered payout."
+  ],
+  "extracted_claim": {
+    "incident_date": "2015-02-24",
+    "incident_type": "Single Vehicle Collision",
+    "amount": 77880.0,
+    "police_report": "NO",
+    "vehicle": "2005 Ford Escape",
+    "summary": "A single vehicle collision occurred in Riverwood, VA, involving a 2005 Ford Escape with minor damage and one injured person."
+  },
+  "form_claimed_amount": 77880.0,
+  "coverage": {
+    "result": "COVERED",
+    "payout": 76880.0,
+    "reasons": [
+      "Covered under Auto Basic; payout = claim - deductible."
+    ]
+  },
+  "risk": {
+    "score": 0.429,
+    "band": "MEDIUM",
+    "method": "ml_logistic_regression",
+    "flags": [
+      "No police report on file",
+      "Claim amount above $60,000"
+    ]
+  },
+  "risk_explanation": "Based on the provided information, two potential fraud/risk indicators have been identified for this claim:\n\n1. The absence of a police report may indicate that the incident was not reported to law enforcement or that it did not occur as described.\n2. The claim amount exceeds $60,000, which is above the average claim value and may suggest an inflated or exaggerated claim.\n\nThese indicators warrant further investigation to verify the accuracy of the claim details.",
+  "suggested_next_action": "Review supporting documents",
+  "decision": "PENDING - human adjuster must approve or deny"
+}

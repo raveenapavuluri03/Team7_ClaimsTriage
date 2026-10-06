@@ -1,0 +1,40 @@
+{
+  "claim_id": "TC1-MODEL-FAIL",
+  "policy": {
+    "policy_number": 429027,
+    "tier": "Auto Basic",
+    "limit": 100000,
+    "deductible": 1000.0,
+    "bind_date": "1990-02-03"
+  },
+  "relevant_policy_clauses": [
+    "Documentation: vehicle theft and parked car claims above $10,000 require a police report; otherwise an adjuster must review.",
+    "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+    "Deductible: the deductible on the policy record is subtracted from every covered payout."
+  ],
+  "extracted_claim": {
+    "incident_date": "2015-02-27",
+    "incident_type": "Multi-vehicle Collision",
+    "amount": 51590.0,
+    "police_report": "YES",
+    "vehicle": "2015 Audi A5",
+    "summary": "A multi-vehicle collision occurred in Columbus, VA, involving a 2015 Audi A5, resulting in total loss and injuries to two people."
+  },
+  "form_claimed_amount": 51590.0,
+  "coverage": {
+    "result": "COVERED",
+    "payout": 50590.0,
+    "reasons": [
+      "Covered under Auto Basic; payout = claim - deductible."
+    ]
+  },
+  "risk": {
+    "score": 0,
+    "band": "LOW",
+    "method": "rule_based_fallback",
+    "flags": []
+  },
+  "risk_explanation": "Based on the provided information, the following fraud/risk indicators are present:\n\nThe presence of a multi-vehicle collision in Columbus, VA may indicate a higher risk due to its location near the Virginia-North Carolina border, which is known for having a high rate of insurance claims. Additionally, the fact that two people were injured suggests a potentially complex claim scenario.",
+  "suggested_next_action": "Standard review",
+  "decision": "PENDING - human adjuster must approve or deny"
+}

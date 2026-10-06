@@ -1,0 +1,43 @@
+{
+  "claim_id": "TC7",
+  "policy": {
+    "policy_number": 332867,
+    "tier": "Auto Basic",
+    "limit": 100000,
+    "deductible": 500.0,
+    "bind_date": "1993-12-13"
+  },
+  "relevant_policy_clauses": [
+    "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+    "Deductible: the deductible on the policy record is subtracted from every covered payout.",
+    "Exclusion: incidents that occur before the policy bind (start) date are not covered."
+  ],
+  "extracted_claim": {
+    "incident_date": "2015-02-22",
+    "incident_type": "Multi-vehicle Collision",
+    "amount": 82300.0,
+    "police_report": "NO",
+    "vehicle": "1995 Dodge Neon",
+    "summary": "A multi-vehicle collision occurred in Arlington, NY, involving a 1995 Dodge Neon with minor damage and injuries."
+  },
+  "form_claimed_amount": 82320.0,
+  "coverage": {
+    "result": "COVERED",
+    "payout": 81820.0,
+    "reasons": [
+      "Covered under Auto Basic; payout = claim - deductible."
+    ]
+  },
+  "risk": {
+    "score": 0.372,
+    "band": "LOW",
+    "method": "ml_logistic_regression",
+    "flags": [
+      "No police report on file",
+      "Claim amount above $60,000"
+    ]
+  },
+  "risk_explanation": "Based on the provided information, two potential fraud/risk indicators have been identified for this claim:\n\n1. The absence of a police report may indicate that the incident was not reported to law enforcement, which could be a red flag for insurance companies.\n2. The claim amount exceeding $60,000 may suggest an unusually high cost for damages and medical expenses, potentially indicating inflated or exaggerated claims.\n\nThese indicators will require further investigation to determine their validity and potential impact on the claim's legitimacy.",
+  "suggested_next_action": "Standard review",
+  "decision": "PENDING - human adjuster must approve or deny"
+}
