@@ -1,0 +1,138 @@
+{
+  "run_id": "9dac0647",
+  "claim_id": "TC4",
+  "status": "COMPLETED_PENDING_ADJUSTER",
+  "current_step": "S10",
+  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "input": {
+    "claim_id": "TC4",
+    "policy_number": 626808,
+    "form_incident_date": "2015-01-08",
+    "form_claimed_amount": 7280.0,
+    "narrative": "On January 08, 2015, around 5:00, my 2010 Toyota Highlander was involved in a parked car in Springfield, SC. It resulted in minor damage and 1 person was injured. There was 1 witness. I did not call the police. I am claiming $7,280 for repairs and related costs."
+  },
+  "config": {
+    "prompt_version": "B",
+    "model": null,
+    "force_bad_json": false,
+    "force_api_fail": false,
+    "force_model_fail": false
+  },
+  "results": {
+    "S1": {
+      "missing_fields": []
+    },
+    "S2": {
+      "policy_number": 626808,
+      "tier": "Auto Basic",
+      "limit": 100000,
+      "report_threshold": 10000,
+      "deductible": 1000.0,
+      "bind_date": "2012-10-26",
+      "annual_premium": 936.61,
+      "relevant_clauses": [
+        "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+        "Documentation: vehicle theft and parked car claims above $10,000 require a police report; otherwise an adjuster must review.",
+        "Deductible: the deductible on the policy record is subtracted from every covered payout."
+      ]
+    },
+    "S3": {
+      "extracted": {
+        "incident_date": "2015-01-08",
+        "incident_type": "Parked Car",
+        "amount": 7280.0,
+        "police_report": "NO",
+        "vehicle": "2010 Toyota Highlander",
+        "summary": "A parked 2010 Toyota Highlander was involved in an incident in Springfield, SC, resulting in minor damage and one person injured."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw": "{\n  \"incident_date\": \"2015-01-08\",\n  \"incident_type\": \"Parked Car\",\n  \"amount\": 7280,\n  \"police_report\": \"NO\",\n  \"vehicle\": \"2010 Toyota Highlander\",\n  \"summary\": \"A parked 2010 Toyota Highlander was involved in an incident in Springfield, SC, resulting in minor damage and one person injured.\"\n}",
+          "valid": true,
+          "error": null
+        }
+      ]
+    },
+    "S4": {
+      "issues": []
+    },
+    "S5": {
+      "result": "COVERED",
+      "payout": 6280.0,
+      "reasons": [
+        "Covered under Auto Basic; payout = claim - deductible."
+      ]
+    },
+    "S6": {
+      "features_built": true,
+      "source": "policy/claims record + extracted fields"
+    },
+    "S7": {
+      "score": 0.177,
+      "method": "ml_logistic_regression",
+      "rule_score": 0.25,
+      "flags": [
+        "No police report on file",
+        "No authorities contacted"
+      ],
+      "band": "LOW"
+    },
+    "S8": {
+      "valid": true,
+      "band": "LOW"
+    },
+    "S9": {
+      "explanation": "Based on the provided information, the fraud/risk indicators for this claim include:\n\n* The absence of a police report, which may indicate that the incident was not reported to law enforcement or that it was not considered significant enough to warrant a report.\n* The fact that no authorities were contacted, which could suggest that the incident was minor and did not require official involvement.\n\nThese indicators are flagged by the risk assessment model as potential red flags for further investigation.",
+      "source": "llm"
+    },
+    "S10": {
+      "package_path": "outputs/TC4_package.json",
+      "suggested_next_action": "Standard review"
+    }
+  },
+  "errors": [
+    {
+      "step": "S4",
+      "attempt": 1,
+      "type": "invalid_output",
+      "error": "invalid JSON (Expecting value)",
+      "ts": "2026-10-06T19:03:51"
+    },
+    {
+      "step": "S4",
+      "attempt": 2,
+      "type": "invalid_output",
+      "error": "invalid JSON (Expecting value)",
+      "ts": "2026-10-06T19:03:51"
+    },
+    {
+      "step": "S4",
+      "attempt": 3,
+      "type": "invalid_output",
+      "error": "invalid JSON (Expecting value)",
+      "ts": "2026-10-06T19:03:51"
+    }
+  ],
+  "retries": {
+    "S3_reprompt": 3
+  },
+  "human_actions": [
+    {
+      "ts": "2026-10-06T19:11:21",
+      "reviewer": "adjuster_1",
+      "note": "model output issue fixed; re-run extraction",
+      "previous_status": "ROUTED_TO_HUMAN",
+      "action": "retry from last step"
+    }
+  ],
+  "metrics": {
+    "llm_calls": 2,
+    "llm_latency_ms": 47031,
+    "prompt_tokens": 519,
+    "output_tokens": 175,
+    "pipeline_ms": 47059
+  },
+  "started_at": "2026-10-06T19:03:51",
+  "updated_at": "2026-10-06T19:12:08"
+}

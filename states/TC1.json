@@ -1,0 +1,110 @@
+{
+  "run_id": "d46869da",
+  "claim_id": "TC1",
+  "status": "APPROVED",
+  "current_step": "S10",
+  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "input": {
+    "claim_id": "TC1",
+    "policy_number": 429027,
+    "form_incident_date": "2015-02-27",
+    "form_claimed_amount": 51590.0,
+    "narrative": "On February 27, 2015, around 23:00, my 2015 Audi A5 was involved in a multi-vehicle collision in Columbus, VA. It resulted in total loss and 2 people were injured. There were 2 witnesses. The police came to the scene and filed a report. I am claiming $51,590 for repairs and related costs."
+  },
+  "config": {
+    "prompt_version": "B",
+    "model": null,
+    "force_bad_json": false,
+    "force_api_fail": false,
+    "force_model_fail": false
+  },
+  "results": {
+    "S1": {
+      "missing_fields": []
+    },
+    "S2": {
+      "policy_number": 429027,
+      "tier": "Auto Basic",
+      "limit": 100000,
+      "report_threshold": 10000,
+      "deductible": 1000.0,
+      "bind_date": "1990-02-03",
+      "annual_premium": 1137.03,
+      "relevant_clauses": [
+        "Documentation: vehicle theft and parked car claims above $10,000 require a police report; otherwise an adjuster must review.",
+        "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+        "Deductible: the deductible on the policy record is subtracted from every covered payout."
+      ]
+    },
+    "S3": {
+      "extracted": {
+        "incident_date": "2015-02-27",
+        "incident_type": "Multi-vehicle Collision",
+        "amount": 51590.0,
+        "police_report": "YES",
+        "vehicle": "2015 Audi A5",
+        "summary": "A multi-vehicle collision occurred in Columbus, VA, involving a 2015 Audi A5, resulting in total loss and injuries to two people."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw": "{\n  \"incident_date\": \"2015-02-27\",\n  \"incident_type\": \"Multi-vehicle Collision\",\n  \"amount\": 51590,\n  \"police_report\": \"YES\",\n  \"vehicle\": \"2015 Audi A5\",\n  \"summary\": \"A multi-vehicle collision occurred in Columbus, VA, involving a 2015 Audi A5, resulting in total loss and injuries to two people.\"\n}",
+          "valid": true,
+          "error": null
+        }
+      ]
+    },
+    "S4": {
+      "issues": []
+    },
+    "S5": {
+      "result": "COVERED",
+      "payout": 50590.0,
+      "reasons": [
+        "Covered under Auto Basic; payout = claim - deductible."
+      ]
+    },
+    "S6": {
+      "features_built": true,
+      "source": "policy/claims record + extracted fields"
+    },
+    "S7": {
+      "score": 0.165,
+      "method": "ml_logistic_regression",
+      "rule_score": 0,
+      "flags": [],
+      "band": "LOW"
+    },
+    "S8": {
+      "valid": true,
+      "band": "LOW"
+    },
+    "S9": {
+      "explanation": "Based on the provided information, the following fraud/risk indicators are noted:\n\nThe presence of a police report confirms that the incident was reported to law enforcement, which is a standard procedure in such cases. However, there is no indication of any red flags or suspicious activity associated with this claim, as evidenced by the low risk score and absence of rule flags. The fact that the coverage is confirmed and the payout calculation appears straightforward suggests that the claim is being processed according to normal procedures.",
+      "source": "llm"
+    },
+    "S10": {
+      "package_path": "outputs/TC1_package.json",
+      "suggested_next_action": "Standard review"
+    }
+  },
+  "errors": [],
+  "retries": {},
+  "human_actions": [
+    {
+      "ts": "2026-10-06T19:12:22",
+      "reviewer": "adjuster_1",
+      "action": "APPROVE",
+      "note": "documents complete"
+    }
+  ],
+  "metrics": {
+    "llm_calls": 2,
+    "llm_latency_ms": 55133,
+    "prompt_tokens": 520,
+    "output_tokens": 187,
+    "pipeline_ms": 55219
+  },
+  "started_at": "2026-10-06T19:02:22",
+  "updated_at": "2026-10-06T19:12:22"
+}

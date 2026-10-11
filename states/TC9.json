@@ -1,0 +1,106 @@
+{
+  "run_id": "92c059b1",
+  "claim_id": "TC9",
+  "status": "COMPLETED_PENDING_ADJUSTER",
+  "current_step": "S10",
+  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "input": {
+    "claim_id": "TC9",
+    "policy_number": 505014,
+    "form_incident_date": "2015-02-15",
+    "form_claimed_amount": 75960.0,
+    "narrative": "On February 15, 2015, around 14:00, my 2010 Jeep Grand Cherokee was involved in a single vehicle collision in Riverwood, WV. It resulted in total loss. There was 1 witness. I did not call the police. I am claiming $75,960 for repairs and related costs."
+  },
+  "config": {
+    "prompt_version": "B",
+    "model": null,
+    "force_bad_json": false,
+    "force_api_fail": false,
+    "force_model_fail": false
+  },
+  "results": {
+    "S1": {
+      "missing_fields": []
+    },
+    "S2": {
+      "policy_number": 505014,
+      "tier": "Auto Basic",
+      "limit": 100000,
+      "report_threshold": 10000,
+      "deductible": 500.0,
+      "bind_date": "2001-12-27",
+      "annual_premium": 1251.16,
+      "relevant_clauses": [
+        "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+        "Documentation: vehicle theft and parked car claims above $10,000 require a police report; otherwise an adjuster must review.",
+        "Deductible: the deductible on the policy record is subtracted from every covered payout."
+      ]
+    },
+    "S3": {
+      "extracted": {
+        "incident_date": "2015-02-15",
+        "incident_type": "Single Vehicle Collision",
+        "amount": 75960.0,
+        "police_report": "NO",
+        "vehicle": "2010 Jeep Grand Cherokee",
+        "summary": "A single vehicle collision occurred in Riverwood, WV, involving a 2010 Jeep Grand Cherokee."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw": "{\n  \"incident_date\": \"2015-02-15\",\n  \"incident_type\": \"Single Vehicle Collision\",\n  \"amount\": 75960,\n  \"police_report\": \"NO\",\n  \"vehicle\": \"2010 Jeep Grand Cherokee\",\n  \"summary\": \"A single vehicle collision occurred in Riverwood, WV, involving a 2010 Jeep Grand Cherokee.\"\n}",
+          "valid": true,
+          "error": null
+        }
+      ]
+    },
+    "S4": {
+      "issues": []
+    },
+    "S5": {
+      "result": "COVERED",
+      "payout": 75460.0,
+      "reasons": [
+        "Covered under Auto Basic; payout = claim - deductible."
+      ]
+    },
+    "S6": {
+      "features_built": true,
+      "source": "policy/claims record + extracted fields"
+    },
+    "S7": {
+      "score": 0.528,
+      "method": "ml_logistic_regression",
+      "rule_score": 0.3,
+      "flags": [
+        "No police report on file",
+        "Claim amount above $60,000"
+      ],
+      "band": "MEDIUM"
+    },
+    "S8": {
+      "valid": true,
+      "band": "MEDIUM"
+    },
+    "S9": {
+      "explanation": "Based on the provided information, two potential fraud/risk indicators have been identified for this claim:\n\n1. The absence of a police report may indicate that the incident was not reported to law enforcement, which could be a red flag for potential underreporting or manipulation.\n2. The claim amount exceeding $60,000 suggests that the damages may be more extensive than initially anticipated, potentially indicating a higher risk of over-valuation or exaggeration.\n\nThese indicators warrant further investigation and review to ensure the accuracy and legitimacy of the claim.",
+      "source": "llm"
+    },
+    "S10": {
+      "package_path": "outputs/TC9_package.json",
+      "suggested_next_action": "Review supporting documents"
+    }
+  },
+  "errors": [],
+  "retries": {},
+  "human_actions": [],
+  "metrics": {
+    "llm_calls": 2,
+    "llm_latency_ms": 49556,
+    "prompt_tokens": 515,
+    "output_tokens": 185,
+    "pipeline_ms": 49582
+  },
+  "started_at": "2026-10-06T19:06:21",
+  "updated_at": "2026-10-06T19:07:10"
+}

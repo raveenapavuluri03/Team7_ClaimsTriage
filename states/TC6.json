@@ -1,0 +1,106 @@
+{
+  "run_id": "182b1b10",
+  "claim_id": "TC6",
+  "status": "COMPLETED_PENDING_ADJUSTER",
+  "current_step": "S10",
+  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "input": {
+    "claim_id": "TC6",
+    "policy_number": 749325,
+    "form_incident_date": "2015-01-06",
+    "form_claimed_amount": 69300.0,
+    "narrative": "On January 06, 2015, around 11:00, my 2010 Ford Escape was involved in a multi-vehicle collision in Columbus, SC. It resulted in minor damage. There were 2 witnesses. I am claiming $69,300 for repairs and related costs."
+  },
+  "config": {
+    "prompt_version": "B",
+    "model": null,
+    "force_bad_json": false,
+    "force_api_fail": false,
+    "force_model_fail": false
+  },
+  "results": {
+    "S1": {
+      "missing_fields": []
+    },
+    "S2": {
+      "policy_number": 749325,
+      "tier": "Auto Premium",
+      "limit": 500000,
+      "report_threshold": 25000,
+      "deductible": 500.0,
+      "bind_date": "2000-03-22",
+      "annual_premium": 948.1,
+      "relevant_clauses": [
+        "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+        "Documentation: vehicle theft and parked car claims above $25,000 require a police report; otherwise an adjuster must review.",
+        "Deductible: the deductible on the policy record is subtracted from every covered payout."
+      ]
+    },
+    "S3": {
+      "extracted": {
+        "incident_date": "2015-01-06",
+        "incident_type": "Multi-vehicle Collision",
+        "amount": 69300.0,
+        "police_report": "UNKNOWN",
+        "vehicle": "2010 Ford Escape",
+        "summary": "A multi-vehicle collision occurred in Columbus, SC, involving a 2010 Ford Escape with minor damage."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw": "{\n  \"incident_date\": \"2015-01-06\",\n  \"incident_type\": \"Multi-vehicle Collision\",\n  \"amount\": 69300,\n  \"police_report\": \"UNKNOWN\",\n  \"vehicle\": \"2010 Ford Escape\",\n  \"summary\": \"A multi-vehicle collision occurred in Columbus, SC, involving a 2010 Ford Escape with minor damage.\"\n}",
+          "valid": true,
+          "error": null
+        }
+      ]
+    },
+    "S4": {
+      "issues": []
+    },
+    "S5": {
+      "result": "COVERED",
+      "payout": 68800.0,
+      "reasons": [
+        "Covered under Auto Premium; payout = claim - deductible."
+      ]
+    },
+    "S6": {
+      "features_built": true,
+      "source": "policy/claims record + extracted fields"
+    },
+    "S7": {
+      "score": 0.165,
+      "method": "ml_logistic_regression",
+      "rule_score": 0.3,
+      "flags": [
+        "No police report on file",
+        "Claim amount above $60,000"
+      ],
+      "band": "LOW"
+    },
+    "S8": {
+      "valid": true,
+      "band": "LOW"
+    },
+    "S9": {
+      "explanation": "Based on the provided information, the fraud/risk indicators for this claim are:\n\nThe lack of a police report on file raises concerns about the validity and accuracy of the incident. Additionally, the claim amount exceeding $60,000 may indicate an atypical or potentially exaggerated loss. These factors contribute to a low risk score of 0.165, indicating some level of uncertainty surrounding the claim's legitimacy.",
+      "source": "llm"
+    },
+    "S10": {
+      "package_path": "outputs/TC6_package.json",
+      "suggested_next_action": "Standard review"
+    }
+  },
+  "errors": [],
+  "retries": {},
+  "human_actions": [],
+  "metrics": {
+    "llm_calls": 2,
+    "llm_latency_ms": 30619,
+    "prompt_tokens": 509,
+    "output_tokens": 162,
+    "pipeline_ms": 30683
+  },
+  "started_at": "2026-10-06T19:04:08",
+  "updated_at": "2026-10-06T19:04:38"
+}

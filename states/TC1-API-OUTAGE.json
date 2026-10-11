@@ -1,0 +1,76 @@
+{
+  "run_id": "d74a13c2",
+  "claim_id": "TC1-API-OUTAGE",
+  "status": "ROUTED_TO_HUMAN",
+  "current_step": "S3",
+  "status_reason": "LLM unavailable after 3 attempts. Routed to human exception review (H1).",
+  "input": {
+    "claim_id": "TC1-API-OUTAGE",
+    "policy_number": 429027,
+    "form_incident_date": "2015-02-27",
+    "form_claimed_amount": 51590.0,
+    "narrative": "On February 27, 2015, around 23:00, my 2015 Audi A5 was involved in a multi-vehicle collision in Columbus, VA. It resulted in total loss and 2 people were injured. There were 2 witnesses. The police came to the scene and filed a report. I am claiming $51,590 for repairs and related costs."
+  },
+  "config": {
+    "prompt_version": "B",
+    "model": null,
+    "force_bad_json": false,
+    "force_api_fail": true,
+    "force_model_fail": false
+  },
+  "results": {
+    "S1": {
+      "missing_fields": []
+    },
+    "S2": {
+      "policy_number": 429027,
+      "tier": "Auto Basic",
+      "limit": 100000,
+      "report_threshold": 10000,
+      "deductible": 1000.0,
+      "bind_date": "1990-02-03",
+      "annual_premium": 1137.03,
+      "relevant_clauses": [
+        "Documentation: vehicle theft and parked car claims above $10,000 require a police report; otherwise an adjuster must review.",
+        "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+        "Deductible: the deductible on the policy record is subtracted from every covered payout."
+      ]
+    }
+  },
+  "errors": [
+    {
+      "step": "S3",
+      "attempt": 1,
+      "type": "api_error",
+      "error": "simulated LLM API outage",
+      "ts": "2026-10-06T19:09:34"
+    },
+    {
+      "step": "S3",
+      "attempt": 2,
+      "type": "api_error",
+      "error": "simulated LLM API outage",
+      "ts": "2026-10-06T19:09:35"
+    },
+    {
+      "step": "S3",
+      "attempt": 3,
+      "type": "api_error",
+      "error": "simulated LLM API outage",
+      "ts": "2026-10-06T19:09:37"
+    }
+  ],
+  "retries": {
+    "S3_api": 3
+  },
+  "human_actions": [],
+  "metrics": {
+    "llm_calls": 0,
+    "llm_latency_ms": 0,
+    "prompt_tokens": 0,
+    "output_tokens": 0,
+    "pipeline_ms": 3008
+  },
+  "started_at": "2026-10-06T19:09:34",
+  "updated_at": "2026-10-06T19:09:37"
+}

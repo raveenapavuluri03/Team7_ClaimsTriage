@@ -8,8 +8,6 @@ __pycache__/
 venv/
 
 # Run outputs
-logs/
-states/
 
 # Mac
 .DS_Store

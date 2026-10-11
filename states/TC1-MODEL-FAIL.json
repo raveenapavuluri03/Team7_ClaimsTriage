@@ -1,0 +1,111 @@
+{
+  "run_id": "c20d3844",
+  "claim_id": "TC1-MODEL-FAIL",
+  "status": "COMPLETED_PENDING_ADJUSTER",
+  "current_step": "S10",
+  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "input": {
+    "claim_id": "TC1-MODEL-FAIL",
+    "policy_number": 429027,
+    "form_incident_date": "2015-02-27",
+    "form_claimed_amount": 51590.0,
+    "narrative": "On February 27, 2015, around 23:00, my 2015 Audi A5 was involved in a multi-vehicle collision in Columbus, VA. It resulted in total loss and 2 people were injured. There were 2 witnesses. The police came to the scene and filed a report. I am claiming $51,590 for repairs and related costs."
+  },
+  "config": {
+    "prompt_version": "B",
+    "model": null,
+    "force_bad_json": false,
+    "force_api_fail": false,
+    "force_model_fail": true
+  },
+  "results": {
+    "S1": {
+      "missing_fields": []
+    },
+    "S2": {
+      "policy_number": 429027,
+      "tier": "Auto Basic",
+      "limit": 100000,
+      "report_threshold": 10000,
+      "deductible": 1000.0,
+      "bind_date": "1990-02-03",
+      "annual_premium": 1137.03,
+      "relevant_clauses": [
+        "Documentation: vehicle theft and parked car claims above $10,000 require a police report; otherwise an adjuster must review.",
+        "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+        "Deductible: the deductible on the policy record is subtracted from every covered payout."
+      ]
+    },
+    "S3": {
+      "extracted": {
+        "incident_date": "2015-02-27",
+        "incident_type": "Multi-vehicle Collision",
+        "amount": 51590.0,
+        "police_report": "YES",
+        "vehicle": "2015 Audi A5",
+        "summary": "A multi-vehicle collision occurred in Columbus, VA, involving a 2015 Audi A5, resulting in total loss and injuries to two people."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw": "{\n  \"incident_date\": \"2015-02-27\",\n  \"incident_type\": \"Multi-vehicle Collision\",\n  \"amount\": 51590,\n  \"police_report\": \"YES\",\n  \"vehicle\": \"2015 Audi A5\",\n  \"summary\": \"A multi-vehicle collision occurred in Columbus, VA, involving a 2015 Audi A5, resulting in total loss and injuries to two people.\"\n}",
+          "valid": true,
+          "error": null
+        }
+      ]
+    },
+    "S4": {
+      "issues": []
+    },
+    "S5": {
+      "result": "COVERED",
+      "payout": 50590.0,
+      "reasons": [
+        "Covered under Auto Basic; payout = claim - deductible."
+      ]
+    },
+    "S6": {
+      "features_built": true,
+      "source": "policy/claims record + extracted fields"
+    },
+    "S7": {
+      "score": 0,
+      "method": "rule_based_fallback",
+      "rule_score": 0,
+      "flags": [],
+      "band": "LOW"
+    },
+    "S8": {
+      "valid": true,
+      "band": "LOW"
+    },
+    "S9": {
+      "explanation": "Based on the provided information, the following fraud/risk indicators are present:\n\nThe presence of a multi-vehicle collision in Columbus, VA may indicate a higher risk due to its location near the Virginia-North Carolina border, which is known for having a high rate of insurance claims. Additionally, the fact that two people were injured suggests a potentially complex claim scenario.",
+      "source": "llm"
+    },
+    "S10": {
+      "package_path": "outputs/TC1-MODEL-FAIL_package.json",
+      "suggested_next_action": "Standard review"
+    }
+  },
+  "errors": [
+    {
+      "step": "S7",
+      "attempt": 1,
+      "type": "model_error",
+      "error": "simulated risk model failure",
+      "ts": "2026-10-06T19:10:09"
+    }
+  ],
+  "retries": {},
+  "human_actions": [],
+  "metrics": {
+    "llm_calls": 2,
+    "llm_latency_ms": 45732,
+    "prompt_tokens": 518,
+    "output_tokens": 163,
+    "pipeline_ms": 45748
+  },
+  "started_at": "2026-10-06T19:09:37",
+  "updated_at": "2026-10-06T19:10:23"
+}

@@ -1,0 +1,106 @@
+{
+  "run_id": "fa722788",
+  "claim_id": "TC10",
+  "status": "COMPLETED_PENDING_ADJUSTER",
+  "current_step": "S10",
+  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "input": {
+    "claim_id": "TC10",
+    "policy_number": 250833,
+    "form_incident_date": "2015-02-02",
+    "form_claimed_amount": 73800.0,
+    "narrative": "On 02/02/2015, around 1:00, my 1995 Audi A3 was involved in a multi-vehicle collision in Springfield, NY. It resulted in minor damage and 2 people were injured. There were 3 witnesses. I am claiming about 73.8 thousand dollars for repairs and related costs."
+  },
+  "config": {
+    "prompt_version": "B",
+    "model": null,
+    "force_bad_json": false,
+    "force_api_fail": false,
+    "force_model_fail": false
+  },
+  "results": {
+    "S1": {
+      "missing_fields": []
+    },
+    "S2": {
+      "policy_number": 250833,
+      "tier": "Auto Standard",
+      "limit": 250000,
+      "report_threshold": 15000,
+      "deductible": 2000.0,
+      "bind_date": "2008-07-28",
+      "annual_premium": 1347.31,
+      "relevant_clauses": [
+        "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+        "Documentation: vehicle theft and parked car claims above $15,000 require a police report; otherwise an adjuster must review.",
+        "Deductible: the deductible on the policy record is subtracted from every covered payout."
+      ]
+    },
+    "S3": {
+      "extracted": {
+        "incident_date": "2015-02-02",
+        "incident_type": "Multi-vehicle Collision",
+        "amount": 73800.0,
+        "police_report": "UNKNOWN",
+        "vehicle": "1995 Audi A3",
+        "summary": "A multi-vehicle collision occurred in Springfield, NY, involving a 1995 Audi A3 with minor damage and injuries."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw": "{\n  \"incident_date\": \"2015-02-02\",\n  \"incident_type\": \"Multi-vehicle Collision\",\n  \"amount\": 73800,\n  \"police_report\": \"UNKNOWN\",\n  \"vehicle\": \"1995 Audi A3\",\n  \"summary\": \"A multi-vehicle collision occurred in Springfield, NY, involving a 1995 Audi A3 with minor damage and injuries.\"\n}",
+          "valid": true,
+          "error": null
+        }
+      ]
+    },
+    "S4": {
+      "issues": []
+    },
+    "S5": {
+      "result": "COVERED",
+      "payout": 71800.0,
+      "reasons": [
+        "Covered under Auto Standard; payout = claim - deductible."
+      ]
+    },
+    "S6": {
+      "features_built": true,
+      "source": "policy/claims record + extracted fields"
+    },
+    "S7": {
+      "score": 0.324,
+      "method": "ml_logistic_regression",
+      "rule_score": 0.3,
+      "flags": [
+        "No police report on file",
+        "Claim amount above $60,000"
+      ],
+      "band": "LOW"
+    },
+    "S8": {
+      "valid": true,
+      "band": "LOW"
+    },
+    "S9": {
+      "explanation": "Based on the provided information, the following fraud/risk indicators have been identified for this claim:\n\nThe absence of a police report on file raises concerns about the validity and accuracy of the incident. Additionally, the claim amount exceeding $60,000 may indicate a potentially exaggerated or inflated claim value. These factors contribute to a low risk score of 0.324, indicating some level of uncertainty surrounding the claim's legitimacy.",
+      "source": "llm"
+    },
+    "S10": {
+      "package_path": "outputs/TC10_package.json",
+      "suggested_next_action": "Standard review"
+    }
+  },
+  "errors": [],
+  "retries": {},
+  "human_actions": [],
+  "metrics": {
+    "llm_calls": 2,
+    "llm_latency_ms": 46328,
+    "prompt_tokens": 522,
+    "output_tokens": 169,
+    "pipeline_ms": 46352
+  },
+  "started_at": "2026-10-06T19:07:10",
+  "updated_at": "2026-10-06T19:07:57"
+}
