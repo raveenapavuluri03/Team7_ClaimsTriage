@@ -1,3 +1,4 @@
+cat > README.md <<'EOF'
 # Team 7 – Insurance Claims Intake Triage (MSA 8770, Milestone 3)
 
 Prototype workflow that turns a submitted insurance claim (form fields + free-text narrative) into a
@@ -43,6 +44,7 @@ ollama pull gpt-oss:20b
 **2. Install the project**
 
 macOS / Linux:
+
 ```bash
 git clone https://github.com/raveenapavuluri03/Team7_ClaimsTriage.git
 cd Team7_ClaimsTriage
@@ -53,6 +55,7 @@ cp .env.example .env
 ```
 
 Windows (Command Prompt):
+
 ```cmd
 git clone https://github.com/raveenapavuluri03/Team7_ClaimsTriage.git
 cd Team7_ClaimsTriage
@@ -63,6 +66,7 @@ copy .env.example .env
 ```
 
 `.env` needs only these two lines (no API key for a local model):
+
 ```
 OLLAMA_HOST=http://localhost:11434
 OLLAMA_MODEL=gpt-oss:20b
@@ -78,10 +82,10 @@ python cost_model.py 3000      # 4. production cost per claim and per month at 3
 python run_tests.py            # 5. Milestone 2 regression: 19 scenarios (~15 min)
 ```
 
+On Windows use `python` instead of `python3` where needed.
+
 Milestone 2 scripts, still available: `make_test_claims.py` (builds `data/test_claims.csv`),
 `train_risk_model.py` (ML vs rules), `compare_prompts.py` (Prompt A vs B, ~10 min).
-
-On Windows use `python` instead of `python3` in the commands above.
 
 ## Try the human checkpoint yourself
 
@@ -146,7 +150,7 @@ run_demo.py         One claim end to end, then act as the reviewer
 run_tests.py        Milestone 2 scenarios (regression)
 run_m3_tests.py     Milestone 3 tests
 cost_model.py       Production cost model from measured token counts
-docs/               Step contracts and state handling (Milestone 2, Tejaswini)
+docs/               Step contracts and state handling (Milestone 2); Milestone 3 report and diagrams
 src/
   llm.py          LLM client (Ollama) + latency/token metrics
   data_prep.py    Load and clean the Mendeley dataset
@@ -159,6 +163,19 @@ src/
   review.py       H2 checkpoint: pending reviews, reviewer view, idempotent events, timeouts, recovery
   external.py     Simulated payment and notification services (with fault injection for tests)
 ```
+
+## Team contributions and AI use (M3)
+
+| Member | Milestone 3 contribution |
+|---|---|
+| Ishita Varma Kalindindi | Human-review design: reviewer screen, approval scope, approve / reject / timeout outcomes |
+| Raveena Pavuluri | Saved state and event handling: SQLite store, atomic state files, inbox and worker |
+| Nikhithareddy Obili | Mac and Ollama setup, real-model tests, cost model |
+| Tejaswini Waghmare | Safe retries and failure simulation, diagrams, README |
+| Kiarash Rezaei | Milestone 2 feedback fixes in `resume_claim()`, UNVERIFIED fallback band, regression tests |
+
+AI use: Claude (Anthropic) was the only AI tool used. It helped draft the Milestone 3 code, diagrams and report.
+The team ran all tests and checked the results. Full details are in the Milestone 3 report.
 
 ## Data
 
@@ -174,3 +191,6 @@ src/
 - The risk model is a small logistic regression on a public dataset; its score is advisory only.
 - H1 (exception review) is still simulated through `resume_claim()`; only the H2 payout review is a real checkpoint.
 - Test narratives are synthetic and cleaner than real customer text.
+- Not tested: two workers running at the same time, a real payment API, and real human reviewers.
+- Governance, security and the risk assessment are left for Milestone 4.
+EOF
