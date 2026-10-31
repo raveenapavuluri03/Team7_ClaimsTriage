@@ -1,5 +1,5 @@
 {
-  "run_id": "d74a13c2",
+  "run_id": "0c52f650",
   "claim_id": "TC1-API-OUTAGE",
   "status": "ROUTED_TO_HUMAN",
   "current_step": "S3",
@@ -43,21 +43,21 @@
       "attempt": 1,
       "type": "api_error",
       "error": "simulated LLM API outage",
-      "ts": "2026-10-06T19:09:34"
+      "ts": "2026-10-31T12:55:53"
     },
     {
       "step": "S3",
       "attempt": 2,
       "type": "api_error",
       "error": "simulated LLM API outage",
-      "ts": "2026-10-06T19:09:35"
+      "ts": "2026-10-31T12:55:54"
     },
     {
       "step": "S3",
       "attempt": 3,
       "type": "api_error",
       "error": "simulated LLM API outage",
-      "ts": "2026-10-06T19:09:37"
+      "ts": "2026-10-31T12:55:56"
     }
   ],
   "retries": {
@@ -69,8 +69,8 @@
     "llm_latency_ms": 0,
     "prompt_tokens": 0,
     "output_tokens": 0,
-    "pipeline_ms": 3008
+    "pipeline_ms": 3103
   },
-  "started_at": "2026-10-06T19:09:34",
-  "updated_at": "2026-10-06T19:09:37"
+  "started_at": "2026-10-31T12:55:53",
+  "updated_at": "2026-10-31T12:55:56"
 }

@@ -18,8 +18,7 @@ def new_state(claim):
     return {
         "run_id": uuid.uuid4().hex[:8],
         "claim_id": claim["claim_id"],
-        "status": "RUNNING",          # RUNNING | PAUSED_MISSING_INFO | ROUTED_TO_HUMAN | FAILED
-                                      # | COMPLETED_PENDING_ADJUSTER | APPROVED | DENIED
+        "status": "RUNNING",          # see the transition table in the README / report (M3)
         "current_step": "S1",
         "status_reason": None,
         "input": claim,
@@ -39,8 +38,11 @@ def save_state(state):
     os.makedirs(STATE_DIR, exist_ok=True)
     state["updated_at"] = now()
     to_save = {k: v for k, v in state.items() if not k.startswith("_")}   # skip in-memory-only items
-    with open(os.path.join(STATE_DIR, f"{state['claim_id']}.json"), "w", encoding="utf-8") as f:
-        json.dump(to_save, f, indent=2, default=str)
+    path = os.path.join(STATE_DIR, f"{state['claim_id']}.json")
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:       # write to a temp file, then swap in one step,
+        json.dump(to_save, f, indent=2, default=str)   # so a crash never leaves a half-written state
+    os.replace(tmp, path)
 
 
 def load_state(claim_id):
@@ -48,11 +50,15 @@ def load_state(claim_id):
         return json.load(f)
 
 
-def log_step(state, step, status, detail="", attempt=1, latency_ms=None):
+def log_raw(claim_id, run_id, step, status, detail="", attempt=1, latency_ms=None):
     """Append one line per event to logs/run_log.jsonl and echo it to the console."""
     os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
-    rec = {"ts": now(), "run_id": state["run_id"], "claim_id": state["claim_id"], "step": step,
+    rec = {"ts": now(), "run_id": run_id, "claim_id": claim_id, "step": step,
            "status": status, "attempt": attempt, "latency_ms": latency_ms, "detail": str(detail)[:300]}
     with open(LOG_PATH, "a", encoding="utf-8") as f:
         f.write(json.dumps(rec) + "\n")
     print(f"  [{step:>3}] {status:<9} attempt={attempt} {'' if latency_ms is None else str(latency_ms) + 'ms '}{rec['detail']}")
+
+
+def log_step(state, step, status, detail="", attempt=1, latency_ms=None):
+    log_raw(state["claim_id"], state["run_id"], step, status, detail, attempt, latency_ms)

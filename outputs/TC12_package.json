@@ -18,7 +18,7 @@
     "amount": 90000.0,
     "police_report": "YES",
     "vehicle": "2015 Ford Fusion",
-    "summary": "A single vehicle collision occurred in Hillsdale, NY, involving a 2015 Ford Fusion with minor damage and one injured person."
+    "summary": "A 2015 Ford Fusion was involved in a single vehicle collision in Hillsdale, NY, resulting in minor damage and one injury."
   },
   "form_claimed_amount": 90000.0,
   "coverage": {
@@ -36,7 +36,7 @@
       "Claim amount above $60,000"
     ]
   },
-  "risk_explanation": "Based on the provided information, the following fraud/risk indicators are present:\n\nThe claim amount exceeds $60,000, which may indicate a potential over-estimation of damages or an attempt to inflate the claim value. Additionally, the risk score is 0.206, classified as LOW, but this may warrant further investigation due to the high claim amount.",
+  "risk_explanation": "The claim\u2019s risk score is low (0.206) according to the logistic\u2011regression model, yet the rule engine flagged the claim amount as exceeding $60,000, which is unusually high for a single\u2011vehicle collision with minor damage and a single injury. The presence of a police report and the fact that the vehicle is a 2015 Ford Fusion under standard auto coverage provide context for the claim, but the high payout relative to the reported damage is a potential fraud or over\u2011claim indicator that warrants further review.",
   "suggested_next_action": "Standard review",
   "decision": "PENDING - human adjuster must approve or deny"
 }

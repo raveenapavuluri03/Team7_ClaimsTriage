@@ -1,9 +1,9 @@
 {
-  "run_id": "9c8538f3",
+  "run_id": "f389706d",
   "claim_id": "TC5",
   "status": "COMPLETED_PENDING_ADJUSTER",
   "current_step": "S10",
-  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "status_reason": "Review package ready; review R-ffae14 waiting for a decision (H2).",
   "input": {
     "claim_id": "TC5",
     "policy_number": 736882,
@@ -43,14 +43,14 @@
         "amount": 77880.0,
         "police_report": "NO",
         "vehicle": "2005 Ford Escape",
-        "summary": "A single vehicle collision occurred in Riverwood, VA, involving a 2005 Ford Escape with minor damage and one injured person."
+        "summary": "A 2005 Ford Escape was involved in a single vehicle collision in Riverwood, VA, resulting in minor damage and one person injured."
       },
       "attempts": [],
       "corrected_by": "adjuster_1"
     },
     "S4": {
       "issues": [],
-      "overridden_by": "adjuster_1"
+      "revalidated_after_correction": true
     },
     "S5": {
       "result": "COVERED",
@@ -78,32 +78,36 @@
       "band": "MEDIUM"
     },
     "S9": {
-      "explanation": "Based on the provided information, two potential fraud/risk indicators have been identified for this claim:\n\n1. The absence of a police report may indicate that the incident was not reported to law enforcement or that it did not occur as described.\n2. The claim amount exceeds $60,000, which is above the average claim value and may suggest an inflated or exaggerated claim.\n\nThese indicators warrant further investigation to verify the accuracy of the claim details.",
+      "explanation": "Fraud/risk indicators for this claim include a medium risk score of 0.429 from the logistic regression model, a lack of a police report on file, and a claim amount exceeding $60,000 despite the collision being described as minor with only one person injured. These factors are flagged by the system\u2019s rule engine and suggest a higher likelihood of potential overstatement or misrepresentation of damages.",
       "source": "llm"
     },
     "S10": {
       "package_path": "outputs/TC5_package.json",
-      "suggested_next_action": "Review supporting documents"
+      "suggested_next_action": "Review supporting documents",
+      "review_id": "R-ffae14"
     }
   },
   "errors": [],
   "retries": {},
   "human_actions": [
     {
-      "ts": "2026-10-06T19:12:08",
+      "ts": "2026-10-31T12:58:19",
       "reviewer": "adjuster_1",
       "note": "invoice confirms form amount",
       "previous_status": "ROUTED_TO_HUMAN",
-      "action": "corrected fields ['amount']"
+      "action": "corrected fields ['amount'] (re-validated)"
     }
   ],
   "metrics": {
     "llm_calls": 2,
-    "llm_latency_ms": 31079,
-    "prompt_tokens": 529,
-    "output_tokens": 173,
-    "pipeline_ms": 31105
+    "llm_latency_ms": 29101,
+    "prompt_tokens": 643,
+    "output_tokens": 526,
+    "pipeline_ms": 29175
   },
-  "started_at": "2026-10-06T19:03:51",
-  "updated_at": "2026-10-06T19:12:22"
+  "started_at": "2026-10-31T12:51:46",
+  "updated_at": "2026-10-31T12:58:31",
+  "retry_history": [
+    {}
+  ]
 }

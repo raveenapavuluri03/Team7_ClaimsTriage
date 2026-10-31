@@ -1,9 +1,9 @@
 {
-  "run_id": "92c059b1",
+  "run_id": "267122a3",
   "claim_id": "TC9",
   "status": "COMPLETED_PENDING_ADJUSTER",
   "current_step": "S10",
-  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "status_reason": "Review package ready; review R-56790d waiting for a decision (H2).",
   "input": {
     "claim_id": "TC9",
     "policy_number": 505014,
@@ -43,12 +43,12 @@
         "amount": 75960.0,
         "police_report": "NO",
         "vehicle": "2010 Jeep Grand Cherokee",
-        "summary": "A single vehicle collision occurred in Riverwood, WV, involving a 2010 Jeep Grand Cherokee."
+        "summary": "A 2010 Jeep Grand Cherokee was involved in a single vehicle collision in Riverwood, WV, resulting in total loss."
       },
       "attempts": [
         {
           "attempt": 1,
-          "raw": "{\n  \"incident_date\": \"2015-02-15\",\n  \"incident_type\": \"Single Vehicle Collision\",\n  \"amount\": 75960,\n  \"police_report\": \"NO\",\n  \"vehicle\": \"2010 Jeep Grand Cherokee\",\n  \"summary\": \"A single vehicle collision occurred in Riverwood, WV, involving a 2010 Jeep Grand Cherokee.\"\n}",
+          "raw": "{\"incident_date\":\"2015-02-15\",\"incident_type\":\"Single Vehicle Collision\",\"amount\":75960,\"police_report\":\"NO\",\"vehicle\":\"2010 Jeep Grand Cherokee\",\"summary\":\"A 2010 Jeep Grand Cherokee was involved in a single vehicle collision in Riverwood, WV, resulting in total loss.\"}",
           "valid": true,
           "error": null
         }
@@ -83,12 +83,13 @@
       "band": "MEDIUM"
     },
     "S9": {
-      "explanation": "Based on the provided information, two potential fraud/risk indicators have been identified for this claim:\n\n1. The absence of a police report may indicate that the incident was not reported to law enforcement, which could be a red flag for potential underreporting or manipulation.\n2. The claim amount exceeding $60,000 suggests that the damages may be more extensive than initially anticipated, potentially indicating a higher risk of over-valuation or exaggeration.\n\nThese indicators warrant further investigation and review to ensure the accuracy and legitimacy of the claim.",
+      "explanation": "Fraud and risk indicators for this claim include the absence of a police report, which is uncommon for a single\u2011vehicle collision that resulted in a total loss, and the claim amount exceeding $60,000, a threshold that has been flagged in prior cases. The machine\u2011learning model assigned a medium risk score of 0.528, reflecting these red flags. These factors should be considered when evaluating the claim\u2019s validity.",
       "source": "llm"
     },
     "S10": {
       "package_path": "outputs/TC9_package.json",
-      "suggested_next_action": "Review supporting documents"
+      "suggested_next_action": "Review supporting documents",
+      "review_id": "R-56790d"
     }
   },
   "errors": [],
@@ -96,11 +97,11 @@
   "human_actions": [],
   "metrics": {
     "llm_calls": 2,
-    "llm_latency_ms": 49556,
-    "prompt_tokens": 515,
-    "output_tokens": 185,
-    "pipeline_ms": 49582
+    "llm_latency_ms": 26580,
+    "prompt_tokens": 632,
+    "output_tokens": 444,
+    "pipeline_ms": 26719
   },
-  "started_at": "2026-10-06T19:06:21",
-  "updated_at": "2026-10-06T19:07:10"
+  "started_at": "2026-10-31T12:53:42",
+  "updated_at": "2026-10-31T12:54:09"
 }

@@ -1,9 +1,9 @@
 {
-  "run_id": "fe482999",
+  "run_id": "df1e24aa",
   "claim_id": "TC11",
   "status": "COMPLETED_PENDING_ADJUSTER",
   "current_step": "S10",
-  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "status_reason": "Review package ready; review R-6b31de waiting for a decision (H2).",
   "input": {
     "claim_id": "TC11",
     "policy_number": 596785,
@@ -43,12 +43,12 @@
         "amount": 91650.0,
         "police_report": "NO",
         "vehicle": "2011 Accura TL",
-        "summary": "A single vehicle collision occurred in Northbrook, SC, involving a 2011 Accura TL and resulting in minor damage and injuries."
+        "summary": "A 2011 Accura TL was involved in a single vehicle collision in Northbrook, SC, resulting in minor damage and injuries to two people."
       },
       "attempts": [
         {
           "attempt": 1,
-          "raw": "{\n  \"incident_date\": \"2015-02-15\",\n  \"incident_type\": \"Single Vehicle Collision\",\n  \"amount\": 91650,\n  \"police_report\": \"NO\",\n  \"vehicle\": \"2011 Accura TL\",\n  \"summary\": \"A single vehicle collision occurred in Northbrook, SC, involving a 2011 Accura TL and resulting in minor damage and injuries.\"\n}",
+          "raw": "{\"incident_date\":\"2015-02-15\",\"incident_type\":\"Single Vehicle Collision\",\"amount\":91650,\"police_report\":\"NO\",\"vehicle\":\"2011 Accura TL\",\"summary\":\"A 2011 Accura TL was involved in a single vehicle collision in Northbrook, SC, resulting in minor damage and injuries to two people.\"}",
           "valid": true,
           "error": null
         }
@@ -83,12 +83,13 @@
       "band": "LOW"
     },
     "S9": {
-      "explanation": "Based on the provided information, two potential fraud/risk indicators have been identified for this claim:\n\n1. The absence of a police report may indicate that the incident was not reported to law enforcement, which could be a red flag for insurance claims adjusters.\n2. The claim amount exceeding $60,000 is also flagged as a risk indicator, suggesting that the damage or injuries may be more severe than initially reported.\n\nThese indicators warrant further investigation and review of the claim details to determine their validity and potential impact on the claim's legitimacy.",
+      "explanation": "Fraud and risk indicators for this claim include the absence of a police report, which is uncommon for a collision involving injuries, and the claim amount exceeding $60,000 despite the vehicle being described as having only minor damage. The low risk score of 0.279 from the logistic regression model is counterbalanced by rule flags that highlight these red\u2011flags. Additionally, the claim is covered under the auto premium, yet the payout is calculated as the claim minus the deductible, raising questions about the alignment between reported damage and the requested compensation.",
       "source": "llm"
     },
     "S10": {
       "package_path": "outputs/TC11_package.json",
-      "suggested_next_action": "Standard review"
+      "suggested_next_action": "Standard review",
+      "review_id": "R-6b31de"
     }
   },
   "errors": [],
@@ -96,11 +97,11 @@
   "human_actions": [],
   "metrics": {
     "llm_calls": 2,
-    "llm_latency_ms": 51032,
-    "prompt_tokens": 529,
-    "output_tokens": 194,
-    "pipeline_ms": 51058
+    "llm_latency_ms": 38926,
+    "prompt_tokens": 644,
+    "output_tokens": 586,
+    "pipeline_ms": 39170
   },
-  "started_at": "2026-10-06T19:07:57",
-  "updated_at": "2026-10-06T19:08:48"
+  "started_at": "2026-10-31T12:54:40",
+  "updated_at": "2026-10-31T12:55:19"
 }

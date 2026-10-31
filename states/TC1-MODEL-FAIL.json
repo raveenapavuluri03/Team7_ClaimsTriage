@@ -1,9 +1,9 @@
 {
-  "run_id": "c20d3844",
+  "run_id": "5d912205",
   "claim_id": "TC1-MODEL-FAIL",
   "status": "COMPLETED_PENDING_ADJUSTER",
   "current_step": "S10",
-  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "status_reason": "Review package ready; review R-d8b322 waiting for a decision (H2).",
   "input": {
     "claim_id": "TC1-MODEL-FAIL",
     "policy_number": 429027,
@@ -43,12 +43,12 @@
         "amount": 51590.0,
         "police_report": "YES",
         "vehicle": "2015 Audi A5",
-        "summary": "A multi-vehicle collision occurred in Columbus, VA, involving a 2015 Audi A5, resulting in total loss and injuries to two people."
+        "summary": "A 2015 Audi A5 was involved in a multi-vehicle collision in Columbus, VA, resulting in total loss and injuries to two people."
       },
       "attempts": [
         {
           "attempt": 1,
-          "raw": "{\n  \"incident_date\": \"2015-02-27\",\n  \"incident_type\": \"Multi-vehicle Collision\",\n  \"amount\": 51590,\n  \"police_report\": \"YES\",\n  \"vehicle\": \"2015 Audi A5\",\n  \"summary\": \"A multi-vehicle collision occurred in Columbus, VA, involving a 2015 Audi A5, resulting in total loss and injuries to two people.\"\n}",
+          "raw": "{\"incident_date\":\"2015-02-27\",\"incident_type\":\"Multi-vehicle Collision\",\"amount\":51590,\"police_report\":\"YES\",\"vehicle\":\"2015 Audi A5\",\"summary\":\"A 2015 Audi A5 was involved in a multi-vehicle collision in Columbus, VA, resulting in total loss and injuries to two people.\"}",
           "valid": true,
           "error": null
         }
@@ -73,19 +73,20 @@
       "method": "rule_based_fallback",
       "rule_score": 0,
       "flags": [],
-      "band": "LOW"
+      "band": "UNVERIFIED"
     },
     "S8": {
       "valid": true,
-      "band": "LOW"
+      "band": "UNVERIFIED"
     },
     "S9": {
-      "explanation": "Based on the provided information, the following fraud/risk indicators are present:\n\nThe presence of a multi-vehicle collision in Columbus, VA may indicate a higher risk due to its location near the Virginia-North Carolina border, which is known for having a high rate of insurance claims. Additionally, the fact that two people were injured suggests a potentially complex claim scenario.",
+      "explanation": "The rule\u2011based assessment returned a risk score of 0 and did not flag any fraud indicators for this claim.  \nThe claim involves a high\u2011value 2015 Audi\u202fA5, a multi\u2011vehicle collision, and injuries to two occupants\u2014factors that can increase scrutiny\u2014but the presence of an official police report and the absence of any rule\u2011based flags suggest no immediate red flags.  \nOverall, the system did not detect any typical fraud patterns in this submission.",
       "source": "llm"
     },
     "S10": {
       "package_path": "outputs/TC1-MODEL-FAIL_package.json",
-      "suggested_next_action": "Standard review"
+      "suggested_next_action": "Manual risk assessment needed (model score unavailable)",
+      "review_id": "R-d8b322"
     }
   },
   "errors": [
@@ -94,18 +95,18 @@
       "attempt": 1,
       "type": "model_error",
       "error": "simulated risk model failure",
-      "ts": "2026-10-06T19:10:09"
+      "ts": "2026-10-31T12:56:16"
     }
   ],
   "retries": {},
   "human_actions": [],
   "metrics": {
     "llm_calls": 2,
-    "llm_latency_ms": 45732,
-    "prompt_tokens": 518,
-    "output_tokens": 163,
-    "pipeline_ms": 45748
+    "llm_latency_ms": 52822,
+    "prompt_tokens": 631,
+    "output_tokens": 898,
+    "pipeline_ms": 52912
   },
-  "started_at": "2026-10-06T19:09:37",
-  "updated_at": "2026-10-06T19:10:23"
+  "started_at": "2026-10-31T12:55:56",
+  "updated_at": "2026-10-31T12:56:49"
 }

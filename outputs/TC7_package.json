@@ -18,7 +18,7 @@
     "amount": 82300.0,
     "police_report": "NO",
     "vehicle": "1995 Dodge Neon",
-    "summary": "A multi-vehicle collision occurred in Arlington, NY, involving a 1995 Dodge Neon with minor damage and injuries."
+    "summary": "A 1995 Dodge Neon was involved in a multi-vehicle collision in Arlington, NY, resulting in minor damage and injuries."
   },
   "form_claimed_amount": 82320.0,
   "coverage": {
@@ -37,7 +37,7 @@
       "Claim amount above $60,000"
     ]
   },
-  "risk_explanation": "Based on the provided information, two potential fraud/risk indicators have been identified for this claim:\n\n1. The absence of a police report may indicate that the incident was not reported to law enforcement, which could be a red flag for insurance companies.\n2. The claim amount exceeding $60,000 may suggest an unusually high cost for damages and medical expenses, potentially indicating inflated or exaggerated claims.\n\nThese indicators will require further investigation to determine their validity and potential impact on the claim's legitimacy.",
+  "risk_explanation": "Fraud and risk indicators for this claim include the absence of a police report, which is uncommon for multi\u2011vehicle collisions, and the claim amount exceeding $60,000 despite the vehicle being a 1995 Dodge Neon with only minor damage. The machine\u2011learning risk score of 0.372 (low) is tempered by these rule flags, suggesting a need for further verification of the claim details.",
   "suggested_next_action": "Standard review",
   "decision": "PENDING - human adjuster must approve or deny"
 }

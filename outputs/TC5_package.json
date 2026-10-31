@@ -18,7 +18,7 @@
     "amount": 77880.0,
     "police_report": "NO",
     "vehicle": "2005 Ford Escape",
-    "summary": "A single vehicle collision occurred in Riverwood, VA, involving a 2005 Ford Escape with minor damage and one injured person."
+    "summary": "A 2005 Ford Escape was involved in a single vehicle collision in Riverwood, VA, resulting in minor damage and one person injured."
   },
   "form_claimed_amount": 77880.0,
   "coverage": {
@@ -37,7 +37,7 @@
       "Claim amount above $60,000"
     ]
   },
-  "risk_explanation": "Based on the provided information, two potential fraud/risk indicators have been identified for this claim:\n\n1. The absence of a police report may indicate that the incident was not reported to law enforcement or that it did not occur as described.\n2. The claim amount exceeds $60,000, which is above the average claim value and may suggest an inflated or exaggerated claim.\n\nThese indicators warrant further investigation to verify the accuracy of the claim details.",
+  "risk_explanation": "Fraud/risk indicators for this claim include a medium risk score of 0.429 from the logistic regression model, a lack of a police report on file, and a claim amount exceeding $60,000 despite the collision being described as minor with only one person injured. These factors are flagged by the system\u2019s rule engine and suggest a higher likelihood of potential overstatement or misrepresentation of damages.",
   "suggested_next_action": "Review supporting documents",
   "decision": "PENDING - human adjuster must approve or deny"
 }

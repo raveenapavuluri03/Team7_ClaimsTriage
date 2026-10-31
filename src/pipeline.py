@@ -6,6 +6,7 @@ import os
 import time
 
 from src.data_prep import load_claims
+from src import review
 from src.extraction import build_prompt, cross_check, parse_and_validate
 from src.llm import llm_with_meta
 from src.policies import check_coverage, retrieve_policy
@@ -174,9 +175,10 @@ def s8_validate_risk(state):
         if not validate_score(r["score"]):
             state["status_reason"] = "Risk score invalid after fallback. Routed to H1."
             return "ROUTED_TO_HUMAN"
-    r["band"] = risk_band(r["score"])
+    # A fallback (rule-based) score must never look like a real model result: band = UNVERIFIED, not LOW.
+    r["band"] = risk_band(r["score"]) if r["method"] == "ml_logistic_regression" else "UNVERIFIED"
     state["results"]["S8"] = {"valid": True, "band": r["band"]}
-    log_step(state, "S8", "ok", f"risk band {r['band']}")
+    log_step(state, "S8", "ok", f"risk band {r['band']}" + ("" if r["band"] != "UNVERIFIED" else " (fallback score, not model-scored)"))
 
 
 def s9_explain(state):
@@ -205,7 +207,8 @@ def s9_explain(state):
 def s10_package(state):
     res = state["results"]
     risk = res["S7"]
-    action = ("Investigate before decision (high risk)" if risk["band"] == "HIGH"
+    action = ("Manual risk assessment needed (model score unavailable)" if risk["band"] == "UNVERIFIED"
+              else "Investigate before decision (high risk)" if risk["band"] == "HIGH"
               else "Review supporting documents" if risk["band"] == "MEDIUM" else "Standard review")
     package = {
         "claim_id": state["claim_id"],
@@ -222,8 +225,10 @@ def s10_package(state):
     os.makedirs("outputs", exist_ok=True)
     with open(os.path.join("outputs", f"{state['claim_id']}_package.json"), "w", encoding="utf-8") as f:
         json.dump(package, f, indent=2, default=str)
-    res["S10"] = {"package_path": f"outputs/{state['claim_id']}_package.json", "suggested_next_action": action}
-    state["status_reason"] = "Review package ready; waiting for adjuster decision (H2)."
+    review_id = review.create_review(state)       # H2: saved pending review (SQLite) - nothing is paid yet
+    res["S10"] = {"package_path": f"outputs/{state['claim_id']}_package.json", "suggested_next_action": action,
+                  "review_id": review_id}
+    state["status_reason"] = f"Review package ready; review {review_id} waiting for a decision (H2)."
     log_step(state, "S10", "ok", f"package saved, next action: {action}")
     return "COMPLETED_PENDING_ADJUSTER"
 
@@ -272,24 +277,43 @@ def run_claim(claim, prompt_version="B", model=None, force_bad_json=False, force
     return run_from(state, "S1")
 
 
+RESUMABLE = ("PAUSED_MISSING_INFO", "ROUTED_TO_HUMAN", "FAILED")
+CORRECTABLE = RESUMABLE + ("COMPLETED_PENDING_ADJUSTER", "ESCALATED_TO_SUPERVISOR")   # open review can be corrected
+
+
 def resume_claim(claim_id, reviewer, note="", corrected_fields=None, new_input=None,
                  override_coverage=False, clear_test_flags=True):
-    """Human exception review (H1) then resume from the right step using the saved state."""
+    """Human exception review (H1), then resume from the right step using the saved state.
+    M3 changes: (1) checks the claim's current status first, (2) resets retry counters,
+    (3) re-validates reviewer corrections (schema + cross-check) before they are used."""
     state = load_state(claim_id)
+    allowed = CORRECTABLE if corrected_fields else RESUMABLE
+    if state["status"] not in allowed:
+        log_step(state, "H1", "ignored", f"{reviewer}: resume ignored, claim is {state['status']}")
+        return state
     if clear_test_flags:
         for k in ("force_bad_json", "force_api_fail", "force_model_fail"):
             state["config"][k] = False
+    state.setdefault("retry_history", []).append(state["retries"])     # keep history, start counters fresh
+    state["retries"] = {}
     action = {"ts": now(), "reviewer": reviewer, "note": note, "previous_status": state["status"]}
     print(f"\n=== Resume {claim_id} by {reviewer} (was {state['status']} at {state['current_step']}) ===")
     if new_input:                                   # customer supplied missing info -> restart at S1
         state["input"].update(new_input)
         action["action"], start = f"added missing fields {list(new_input)}", "S1"
-    elif corrected_fields:                          # reviewer corrected extraction -> continue at S5
+    elif corrected_fields:                          # reviewer corrected extraction -> validate again, continue at S5
         base = (state["results"].get("S3") or {}).get("extracted") or {}
-        base.update(corrected_fields)
-        state["results"]["S3"] = {"extracted": base, "attempts": [], "corrected_by": reviewer}
-        state["results"]["S4"] = {"issues": [], "overridden_by": reviewer}
-        action["action"], start = f"corrected fields {list(corrected_fields)}", "S5"
+        parsed, err = parse_and_validate(json.dumps({**base, **corrected_fields}))
+        issues = [] if err else cross_check(parsed, state["input"], AMOUNT_TOLERANCE)
+        if err or issues:                           # an invalid correction is refused; the claim is unchanged
+            action["action"] = f"correction REFUSED {list(corrected_fields)}: {err or '; '.join(issues)}"
+            state["human_actions"].append(action)
+            log_step(state, "H1", "refused", action["action"])
+            save_state(state)
+            return state
+        state["results"]["S3"] = {"extracted": parsed, "attempts": [], "corrected_by": reviewer}
+        state["results"]["S4"] = {"issues": [], "revalidated_after_correction": True}
+        action["action"], start = f"corrected fields {list(corrected_fields)} (re-validated)", "S5"
     elif override_coverage:                         # reviewer confirms coverage -> continue at S6
         state["results"]["S5"]["result"] = "COVERED"
         state["results"]["S5"]["reasons"].append(f"Coverage confirmed by reviewer {reviewer}.")
@@ -299,20 +323,3 @@ def resume_claim(claim_id, reviewer, note="", corrected_fields=None, new_input=N
     state["human_actions"].append(action)
     log_step(state, "H1", "human", f"{reviewer}: {action['action']} - {note}")
     return run_from(state, start)
-
-
-def adjuster_decision(claim_id, decision, reviewer, note=""):
-    """H2 (simulated): final human decision. Payment / notification systems are mocked."""
-    state = load_state(claim_id)
-    if state["status"] != "COMPLETED_PENDING_ADJUSTER":
-        raise ValueError(f"{claim_id} is {state['status']}; only completed packages can be decided.")
-    decision = decision.upper()
-    assert decision in ("APPROVE", "DENY")
-    state["status"] = "APPROVED" if decision == "APPROVE" else "DENIED"
-    state["human_actions"].append({"ts": now(), "reviewer": reviewer, "action": decision, "note": note})
-    log_step(state, "H2", "human", f"{reviewer}: {decision} - {note}")
-    if decision == "APPROVE":
-        log_step(state, "EXT", "mock", f"Payment system (simulated): payout ${state['results']['S5']['payout']:,.0f} queued")
-    log_step(state, "EXT", "mock", f"Notification service (simulated): customer informed of {state['status']}")
-    save_state(state)
-    return state

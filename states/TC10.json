@@ -1,9 +1,9 @@
 {
-  "run_id": "fa722788",
+  "run_id": "7257117b",
   "claim_id": "TC10",
   "status": "COMPLETED_PENDING_ADJUSTER",
   "current_step": "S10",
-  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "status_reason": "Review package ready; review R-fbe710 waiting for a decision (H2).",
   "input": {
     "claim_id": "TC10",
     "policy_number": 250833,
@@ -43,12 +43,12 @@
         "amount": 73800.0,
         "police_report": "UNKNOWN",
         "vehicle": "1995 Audi A3",
-        "summary": "A multi-vehicle collision occurred in Springfield, NY, involving a 1995 Audi A3 with minor damage and injuries."
+        "summary": "A 1995 Audi A3 was involved in a multi-vehicle collision in Springfield, NY, resulting in minor damage and injuries to two people."
       },
       "attempts": [
         {
           "attempt": 1,
-          "raw": "{\n  \"incident_date\": \"2015-02-02\",\n  \"incident_type\": \"Multi-vehicle Collision\",\n  \"amount\": 73800,\n  \"police_report\": \"UNKNOWN\",\n  \"vehicle\": \"1995 Audi A3\",\n  \"summary\": \"A multi-vehicle collision occurred in Springfield, NY, involving a 1995 Audi A3 with minor damage and injuries.\"\n}",
+          "raw": "{\"incident_date\":\"2015-02-02\",\"incident_type\":\"Multi-vehicle Collision\",\"amount\":73800,\"police_report\":\"UNKNOWN\",\"vehicle\":\"1995 Audi A3\",\"summary\":\"A 1995 Audi A3 was involved in a multi-vehicle collision in Springfield, NY, resulting in minor damage and injuries to two people.\"}",
           "valid": true,
           "error": null
         }
@@ -83,12 +83,13 @@
       "band": "LOW"
     },
     "S9": {
-      "explanation": "Based on the provided information, the following fraud/risk indicators have been identified for this claim:\n\nThe absence of a police report on file raises concerns about the validity and accuracy of the incident. Additionally, the claim amount exceeding $60,000 may indicate a potentially exaggerated or inflated claim value. These factors contribute to a low risk score of 0.324, indicating some level of uncertainty surrounding the claim's legitimacy.",
+      "explanation": "Fraud/risk indicators for this claim include the absence of a police report on file, which is a common red flag in collision claims, and the claim amount exceeding $60,000 despite the description of only minor damage. The machine\u2011learning risk score of 0.324 (low) suggests the model does not flag high risk, but the rule\u2011based flags still warrant closer scrutiny. These indicators should be noted for further verification before a decision is made.",
       "source": "llm"
     },
     "S10": {
       "package_path": "outputs/TC10_package.json",
-      "suggested_next_action": "Standard review"
+      "suggested_next_action": "Standard review",
+      "review_id": "R-fbe710"
     }
   },
   "errors": [],
@@ -96,11 +97,11 @@
   "human_actions": [],
   "metrics": {
     "llm_calls": 2,
-    "llm_latency_ms": 46328,
-    "prompt_tokens": 522,
-    "output_tokens": 169,
-    "pipeline_ms": 46352
+    "llm_latency_ms": 30764,
+    "prompt_tokens": 639,
+    "output_tokens": 505,
+    "pipeline_ms": 30966
   },
-  "started_at": "2026-10-06T19:07:10",
-  "updated_at": "2026-10-06T19:07:57"
+  "started_at": "2026-10-31T12:54:09",
+  "updated_at": "2026-10-31T12:54:40"
 }

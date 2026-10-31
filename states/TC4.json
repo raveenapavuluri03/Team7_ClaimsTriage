@@ -1,9 +1,9 @@
 {
-  "run_id": "9dac0647",
+  "run_id": "920697dc",
   "claim_id": "TC4",
   "status": "COMPLETED_PENDING_ADJUSTER",
   "current_step": "S10",
-  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "status_reason": "Review package ready; review R-872484 waiting for a decision (H2).",
   "input": {
     "claim_id": "TC4",
     "policy_number": 626808,
@@ -43,12 +43,12 @@
         "amount": 7280.0,
         "police_report": "NO",
         "vehicle": "2010 Toyota Highlander",
-        "summary": "A parked 2010 Toyota Highlander was involved in an incident in Springfield, SC, resulting in minor damage and one person injured."
+        "summary": "A 2010 Toyota Highlander was involved in a parked car incident in Springfield, SC, resulting in minor damage and one injury."
       },
       "attempts": [
         {
           "attempt": 1,
-          "raw": "{\n  \"incident_date\": \"2015-01-08\",\n  \"incident_type\": \"Parked Car\",\n  \"amount\": 7280,\n  \"police_report\": \"NO\",\n  \"vehicle\": \"2010 Toyota Highlander\",\n  \"summary\": \"A parked 2010 Toyota Highlander was involved in an incident in Springfield, SC, resulting in minor damage and one person injured.\"\n}",
+          "raw": "{\"incident_date\":\"2015-01-08\",\"incident_type\":\"Parked Car\",\"amount\":7280,\"police_report\":\"NO\",\"vehicle\":\"2010 Toyota Highlander\",\"summary\":\"A 2010 Toyota Highlander was involved in a parked car incident in Springfield, SC, resulting in minor damage and one injury.\"}",
           "valid": true,
           "error": null
         }
@@ -83,12 +83,13 @@
       "band": "LOW"
     },
     "S9": {
-      "explanation": "Based on the provided information, the fraud/risk indicators for this claim include:\n\n* The absence of a police report, which may indicate that the incident was not reported to law enforcement or that it was not considered significant enough to warrant a report.\n* The fact that no authorities were contacted, which could suggest that the incident was minor and did not require official involvement.\n\nThese indicators are flagged by the risk assessment model as potential red flags for further investigation.",
+      "explanation": "The claim\u2019s risk score of 0.177 indicates a low probability of fraud according to the logistic\u2011regression model, yet two rule flags are present: no police report was filed and no authorities were contacted. These flags are common indicators of potential under\u2011reporting or incomplete documentation, especially in a parked\u2011car incident that resulted in minor damage and a single injury. The combination of a low overall risk score with these specific rule alerts suggests a need for careful review of the claim details.",
       "source": "llm"
     },
     "S10": {
       "package_path": "outputs/TC4_package.json",
-      "suggested_next_action": "Standard review"
+      "suggested_next_action": "Standard review",
+      "review_id": "R-872484"
     }
   },
   "errors": [
@@ -97,29 +98,27 @@
       "attempt": 1,
       "type": "invalid_output",
       "error": "invalid JSON (Expecting value)",
-      "ts": "2026-10-06T19:03:51"
+      "ts": "2026-10-31T12:51:46"
     },
     {
       "step": "S4",
       "attempt": 2,
       "type": "invalid_output",
       "error": "invalid JSON (Expecting value)",
-      "ts": "2026-10-06T19:03:51"
+      "ts": "2026-10-31T12:51:46"
     },
     {
       "step": "S4",
       "attempt": 3,
       "type": "invalid_output",
       "error": "invalid JSON (Expecting value)",
-      "ts": "2026-10-06T19:03:51"
+      "ts": "2026-10-31T12:51:46"
     }
   ],
-  "retries": {
-    "S3_reprompt": 3
-  },
+  "retries": {},
   "human_actions": [
     {
-      "ts": "2026-10-06T19:11:21",
+      "ts": "2026-10-31T12:57:41",
       "reviewer": "adjuster_1",
       "note": "model output issue fixed; re-run extraction",
       "previous_status": "ROUTED_TO_HUMAN",
@@ -128,11 +127,16 @@
   ],
   "metrics": {
     "llm_calls": 2,
-    "llm_latency_ms": 47031,
-    "prompt_tokens": 519,
-    "output_tokens": 175,
-    "pipeline_ms": 47059
+    "llm_latency_ms": 37732,
+    "prompt_tokens": 633,
+    "output_tokens": 544,
+    "pipeline_ms": 38002
   },
-  "started_at": "2026-10-06T19:03:51",
-  "updated_at": "2026-10-06T19:12:08"
+  "started_at": "2026-10-31T12:51:46",
+  "updated_at": "2026-10-31T12:58:19",
+  "retry_history": [
+    {
+      "S3_reprompt": 3
+    }
+  ]
 }

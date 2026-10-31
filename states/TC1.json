@@ -1,9 +1,9 @@
 {
-  "run_id": "d46869da",
+  "run_id": "24cd8f63",
   "claim_id": "TC1",
-  "status": "APPROVED",
+  "status": "PAID",
   "current_step": "S10",
-  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "status_reason": "Payment of $50,590.00 confirmed (attempt 1).",
   "input": {
     "claim_id": "TC1",
     "policy_number": 429027,
@@ -43,12 +43,12 @@
         "amount": 51590.0,
         "police_report": "YES",
         "vehicle": "2015 Audi A5",
-        "summary": "A multi-vehicle collision occurred in Columbus, VA, involving a 2015 Audi A5, resulting in total loss and injuries to two people."
+        "summary": "A 2015 Audi A5 was involved in a multi-vehicle collision in Columbus, VA, resulting in total loss and injuries."
       },
       "attempts": [
         {
           "attempt": 1,
-          "raw": "{\n  \"incident_date\": \"2015-02-27\",\n  \"incident_type\": \"Multi-vehicle Collision\",\n  \"amount\": 51590,\n  \"police_report\": \"YES\",\n  \"vehicle\": \"2015 Audi A5\",\n  \"summary\": \"A multi-vehicle collision occurred in Columbus, VA, involving a 2015 Audi A5, resulting in total loss and injuries to two people.\"\n}",
+          "raw": "{\"incident_date\":\"2015-02-27\",\"incident_type\":\"Multi-vehicle Collision\",\"amount\":51590,\"police_report\":\"YES\",\"vehicle\":\"2015 Audi A5\",\"summary\":\"A 2015 Audi A5 was involved in a multi-vehicle collision in Columbus, VA, resulting in total loss and injuries.\"}",
           "valid": true,
           "error": null
         }
@@ -80,31 +80,39 @@
       "band": "LOW"
     },
     "S9": {
-      "explanation": "Based on the provided information, the following fraud/risk indicators are noted:\n\nThe presence of a police report confirms that the incident was reported to law enforcement, which is a standard procedure in such cases. However, there is no indication of any red flags or suspicious activity associated with this claim, as evidenced by the low risk score and absence of rule flags. The fact that the coverage is confirmed and the payout calculation appears straightforward suggests that the claim is being processed according to normal procedures.",
+      "explanation": "The claim\u2019s risk score of 0.165 (low) and the absence of any rule flags suggest a low likelihood of fraud. However, typical indicators for scrutiny in a multi\u2011vehicle collision with a total loss and injuries include the severity of the impact, the presence of multiple parties, and the potential for inflated repair estimates. These factors should be reviewed in the context of the police report and supporting documentation.",
       "source": "llm"
     },
     "S10": {
       "package_path": "outputs/TC1_package.json",
-      "suggested_next_action": "Standard review"
+      "suggested_next_action": "Standard review",
+      "review_id": "R-83ee41"
+    },
+    "EXT": {
+      "payment_key": "payout:R-83ee41",
+      "amount": 50590.0,
+      "confirmed_at": "2026-10-31T12:58:31"
     }
   },
   "errors": [],
   "retries": {},
   "human_actions": [
     {
-      "ts": "2026-10-06T19:12:22",
+      "ts": "2026-10-31T12:58:31",
       "reviewer": "adjuster_1",
       "action": "APPROVE",
+      "review_id": "R-83ee41",
+      "content_version": "6dd20ce5f07b",
       "note": "documents complete"
     }
   ],
   "metrics": {
     "llm_calls": 2,
-    "llm_latency_ms": 55133,
-    "prompt_tokens": 520,
-    "output_tokens": 187,
-    "pipeline_ms": 55219
+    "llm_latency_ms": 32982,
+    "prompt_tokens": 629,
+    "output_tokens": 530,
+    "pipeline_ms": 33234
   },
-  "started_at": "2026-10-06T19:02:22",
-  "updated_at": "2026-10-06T19:12:22"
+  "started_at": "2026-10-31T12:50:54",
+  "updated_at": "2026-10-31T12:58:31"
 }

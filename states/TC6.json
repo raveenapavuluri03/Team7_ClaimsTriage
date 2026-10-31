@@ -1,9 +1,9 @@
 {
-  "run_id": "182b1b10",
+  "run_id": "254b91e0",
   "claim_id": "TC6",
   "status": "COMPLETED_PENDING_ADJUSTER",
   "current_step": "S10",
-  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "status_reason": "Review package ready; review R-d10a47 waiting for a decision (H2).",
   "input": {
     "claim_id": "TC6",
     "policy_number": 749325,
@@ -43,12 +43,12 @@
         "amount": 69300.0,
         "police_report": "UNKNOWN",
         "vehicle": "2010 Ford Escape",
-        "summary": "A multi-vehicle collision occurred in Columbus, SC, involving a 2010 Ford Escape with minor damage."
+        "summary": "A 2010 Ford Escape was involved in a multi-vehicle collision in Columbus, SC, resulting in minor damage."
       },
       "attempts": [
         {
           "attempt": 1,
-          "raw": "{\n  \"incident_date\": \"2015-01-06\",\n  \"incident_type\": \"Multi-vehicle Collision\",\n  \"amount\": 69300,\n  \"police_report\": \"UNKNOWN\",\n  \"vehicle\": \"2010 Ford Escape\",\n  \"summary\": \"A multi-vehicle collision occurred in Columbus, SC, involving a 2010 Ford Escape with minor damage.\"\n}",
+          "raw": "{\"incident_date\":\"2015-01-06\",\"incident_type\":\"Multi-vehicle Collision\",\"amount\":69300,\"police_report\":\"UNKNOWN\",\"vehicle\":\"2010 Ford Escape\",\"summary\":\"A 2010 Ford Escape was involved in a multi-vehicle collision in Columbus, SC, resulting in minor damage.\"}",
           "valid": true,
           "error": null
         }
@@ -83,12 +83,13 @@
       "band": "LOW"
     },
     "S9": {
-      "explanation": "Based on the provided information, the fraud/risk indicators for this claim are:\n\nThe lack of a police report on file raises concerns about the validity and accuracy of the incident. Additionally, the claim amount exceeding $60,000 may indicate an atypical or potentially exaggerated loss. These factors contribute to a low risk score of 0.165, indicating some level of uncertainty surrounding the claim's legitimacy.",
+      "explanation": "Fraud/risk indicators for this claim include the absence of a police report on file, which is a common red flag in collision claims, and the claim amount ($60,000+) that appears disproportionate to the described minor damage. The machine\u2011learning risk score is low (0.165), suggesting the overall risk profile is not high, but the rule flags still warrant closer scrutiny. These indicators should be considered when evaluating the claim\u2019s validity.",
       "source": "llm"
     },
     "S10": {
       "package_path": "outputs/TC6_package.json",
-      "suggested_next_action": "Standard review"
+      "suggested_next_action": "Standard review",
+      "review_id": "R-d10a47"
     }
   },
   "errors": [],
@@ -96,11 +97,11 @@
   "human_actions": [],
   "metrics": {
     "llm_calls": 2,
-    "llm_latency_ms": 30619,
-    "prompt_tokens": 509,
-    "output_tokens": 162,
-    "pipeline_ms": 30683
+    "llm_latency_ms": 29333,
+    "prompt_tokens": 623,
+    "output_tokens": 593,
+    "pipeline_ms": 29556
   },
-  "started_at": "2026-10-06T19:04:08",
-  "updated_at": "2026-10-06T19:04:38"
+  "started_at": "2026-10-31T12:52:03",
+  "updated_at": "2026-10-31T12:52:32"
 }

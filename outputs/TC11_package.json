@@ -18,7 +18,7 @@
     "amount": 91650.0,
     "police_report": "NO",
     "vehicle": "2011 Accura TL",
-    "summary": "A single vehicle collision occurred in Northbrook, SC, involving a 2011 Accura TL and resulting in minor damage and injuries."
+    "summary": "A 2011 Accura TL was involved in a single vehicle collision in Northbrook, SC, resulting in minor damage and injuries to two people."
   },
   "form_claimed_amount": 91650.0,
   "coverage": {
@@ -37,7 +37,7 @@
       "Claim amount above $60,000"
     ]
   },
-  "risk_explanation": "Based on the provided information, two potential fraud/risk indicators have been identified for this claim:\n\n1. The absence of a police report may indicate that the incident was not reported to law enforcement, which could be a red flag for insurance claims adjusters.\n2. The claim amount exceeding $60,000 is also flagged as a risk indicator, suggesting that the damage or injuries may be more severe than initially reported.\n\nThese indicators warrant further investigation and review of the claim details to determine their validity and potential impact on the claim's legitimacy.",
+  "risk_explanation": "Fraud and risk indicators for this claim include the absence of a police report, which is uncommon for a collision involving injuries, and the claim amount exceeding $60,000 despite the vehicle being described as having only minor damage. The low risk score of 0.279 from the logistic regression model is counterbalanced by rule flags that highlight these red\u2011flags. Additionally, the claim is covered under the auto premium, yet the payout is calculated as the claim minus the deductible, raising questions about the alignment between reported damage and the requested compensation.",
   "suggested_next_action": "Standard review",
   "decision": "PENDING - human adjuster must approve or deny"
 }

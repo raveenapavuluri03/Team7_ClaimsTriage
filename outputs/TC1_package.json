@@ -18,7 +18,7 @@
     "amount": 51590.0,
     "police_report": "YES",
     "vehicle": "2015 Audi A5",
-    "summary": "A multi-vehicle collision occurred in Columbus, VA, involving a 2015 Audi A5, resulting in total loss and injuries to two people."
+    "summary": "A 2015 Audi A5 was involved in a multi-vehicle collision in Columbus, VA, resulting in total loss and injuries."
   },
   "form_claimed_amount": 51590.0,
   "coverage": {
@@ -34,7 +34,7 @@
     "method": "ml_logistic_regression",
     "flags": []
   },
-  "risk_explanation": "Based on the provided information, the following fraud/risk indicators are noted:\n\nThe presence of a police report confirms that the incident was reported to law enforcement, which is a standard procedure in such cases. However, there is no indication of any red flags or suspicious activity associated with this claim, as evidenced by the low risk score and absence of rule flags. The fact that the coverage is confirmed and the payout calculation appears straightforward suggests that the claim is being processed according to normal procedures.",
+  "risk_explanation": "The claim\u2019s risk score of 0.165 (low) and the absence of any rule flags suggest a low likelihood of fraud. However, typical indicators for scrutiny in a multi\u2011vehicle collision with a total loss and injuries include the severity of the impact, the presence of multiple parties, and the potential for inflated repair estimates. These factors should be reviewed in the context of the police report and supporting documentation.",
   "suggested_next_action": "Standard review",
   "decision": "PENDING - human adjuster must approve or deny"
 }

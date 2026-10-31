@@ -18,7 +18,7 @@
     "amount": 69300.0,
     "police_report": "UNKNOWN",
     "vehicle": "2010 Ford Escape",
-    "summary": "A multi-vehicle collision occurred in Columbus, SC, involving a 2010 Ford Escape with minor damage."
+    "summary": "A 2010 Ford Escape was involved in a multi-vehicle collision in Columbus, SC, resulting in minor damage."
   },
   "form_claimed_amount": 69300.0,
   "coverage": {
@@ -37,7 +37,7 @@
       "Claim amount above $60,000"
     ]
   },
-  "risk_explanation": "Based on the provided information, the fraud/risk indicators for this claim are:\n\nThe lack of a police report on file raises concerns about the validity and accuracy of the incident. Additionally, the claim amount exceeding $60,000 may indicate an atypical or potentially exaggerated loss. These factors contribute to a low risk score of 0.165, indicating some level of uncertainty surrounding the claim's legitimacy.",
+  "risk_explanation": "Fraud/risk indicators for this claim include the absence of a police report on file, which is a common red flag in collision claims, and the claim amount ($60,000+) that appears disproportionate to the described minor damage. The machine\u2011learning risk score is low (0.165), suggesting the overall risk profile is not high, but the rule flags still warrant closer scrutiny. These indicators should be considered when evaluating the claim\u2019s validity.",
   "suggested_next_action": "Standard review",
   "decision": "PENDING - human adjuster must approve or deny"
 }

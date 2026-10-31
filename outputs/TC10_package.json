@@ -18,7 +18,7 @@
     "amount": 73800.0,
     "police_report": "UNKNOWN",
     "vehicle": "1995 Audi A3",
-    "summary": "A multi-vehicle collision occurred in Springfield, NY, involving a 1995 Audi A3 with minor damage and injuries."
+    "summary": "A 1995 Audi A3 was involved in a multi-vehicle collision in Springfield, NY, resulting in minor damage and injuries to two people."
   },
   "form_claimed_amount": 73800.0,
   "coverage": {
@@ -37,7 +37,7 @@
       "Claim amount above $60,000"
     ]
   },
-  "risk_explanation": "Based on the provided information, the following fraud/risk indicators have been identified for this claim:\n\nThe absence of a police report on file raises concerns about the validity and accuracy of the incident. Additionally, the claim amount exceeding $60,000 may indicate a potentially exaggerated or inflated claim value. These factors contribute to a low risk score of 0.324, indicating some level of uncertainty surrounding the claim's legitimacy.",
+  "risk_explanation": "Fraud/risk indicators for this claim include the absence of a police report on file, which is a common red flag in collision claims, and the claim amount exceeding $60,000 despite the description of only minor damage. The machine\u2011learning risk score of 0.324 (low) suggests the model does not flag high risk, but the rule\u2011based flags still warrant closer scrutiny. These indicators should be noted for further verification before a decision is made.",
   "suggested_next_action": "Standard review",
   "decision": "PENDING - human adjuster must approve or deny"
 }

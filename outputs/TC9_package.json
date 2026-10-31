@@ -18,7 +18,7 @@
     "amount": 75960.0,
     "police_report": "NO",
     "vehicle": "2010 Jeep Grand Cherokee",
-    "summary": "A single vehicle collision occurred in Riverwood, WV, involving a 2010 Jeep Grand Cherokee."
+    "summary": "A 2010 Jeep Grand Cherokee was involved in a single vehicle collision in Riverwood, WV, resulting in total loss."
   },
   "form_claimed_amount": 75960.0,
   "coverage": {
@@ -37,7 +37,7 @@
       "Claim amount above $60,000"
     ]
   },
-  "risk_explanation": "Based on the provided information, two potential fraud/risk indicators have been identified for this claim:\n\n1. The absence of a police report may indicate that the incident was not reported to law enforcement, which could be a red flag for potential underreporting or manipulation.\n2. The claim amount exceeding $60,000 suggests that the damages may be more extensive than initially anticipated, potentially indicating a higher risk of over-valuation or exaggeration.\n\nThese indicators warrant further investigation and review to ensure the accuracy and legitimacy of the claim.",
+  "risk_explanation": "Fraud and risk indicators for this claim include the absence of a police report, which is uncommon for a single\u2011vehicle collision that resulted in a total loss, and the claim amount exceeding $60,000, a threshold that has been flagged in prior cases. The machine\u2011learning model assigned a medium risk score of 0.528, reflecting these red flags. These factors should be considered when evaluating the claim\u2019s validity.",
   "suggested_next_action": "Review supporting documents",
   "decision": "PENDING - human adjuster must approve or deny"
 }

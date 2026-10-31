@@ -18,7 +18,7 @@
     "amount": 7280.0,
     "police_report": "NO",
     "vehicle": "2010 Toyota Highlander",
-    "summary": "A parked 2010 Toyota Highlander was involved in an incident in Springfield, SC, resulting in minor damage and one person injured."
+    "summary": "A 2010 Toyota Highlander was involved in a parked car incident in Springfield, SC, resulting in minor damage and one injury."
   },
   "form_claimed_amount": 7280.0,
   "coverage": {
@@ -37,7 +37,7 @@
       "No authorities contacted"
     ]
   },
-  "risk_explanation": "Based on the provided information, the fraud/risk indicators for this claim include:\n\n* The absence of a police report, which may indicate that the incident was not reported to law enforcement or that it was not considered significant enough to warrant a report.\n* The fact that no authorities were contacted, which could suggest that the incident was minor and did not require official involvement.\n\nThese indicators are flagged by the risk assessment model as potential red flags for further investigation.",
+  "risk_explanation": "The claim\u2019s risk score of 0.177 indicates a low probability of fraud according to the logistic\u2011regression model, yet two rule flags are present: no police report was filed and no authorities were contacted. These flags are common indicators of potential under\u2011reporting or incomplete documentation, especially in a parked\u2011car incident that resulted in minor damage and a single injury. The combination of a low overall risk score with these specific rule alerts suggests a need for careful review of the claim details.",
   "suggested_next_action": "Standard review",
   "decision": "PENDING - human adjuster must approve or deny"
 }

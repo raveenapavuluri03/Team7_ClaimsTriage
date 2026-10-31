@@ -1,9 +1,9 @@
 {
-  "run_id": "f277df77",
+  "run_id": "988998c5",
   "claim_id": "TC3",
   "status": "COMPLETED_PENDING_ADJUSTER",
   "current_step": "S10",
-  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "status_reason": "Review package ready; review R-5fb78a waiting for a decision (H2).",
   "input": {
     "claim_id": "TC3",
     "policy_number": 342868,
@@ -48,7 +48,7 @@
       "attempts": [
         {
           "attempt": 1,
-          "raw": "{\n  \"incident_date\": \"2015-01-21\",\n  \"incident_type\": \"Vehicle Theft\",\n  \"amount\": 40000,\n  \"police_report\": \"NO\",\n  \"vehicle\": \"2007 Mercedes E400\",\n  \"summary\": \"A 2007 Mercedes E400 was stolen in Riverwood, VA, resulting in minor damage.\"\n}",
+          "raw": "{\"incident_date\":\"2015-01-21\",\"incident_type\":\"Vehicle Theft\",\"amount\":40000,\"police_report\":\"NO\",\"vehicle\":\"2007 Mercedes E400\",\"summary\":\"A 2007 Mercedes E400 was stolen in Riverwood, VA, resulting in minor damage.\"}",
           "valid": true,
           "error": null
         }
@@ -84,19 +84,20 @@
       "band": "MEDIUM"
     },
     "S9": {
-      "explanation": "Based on the claim summary, the following fraud/risk indicators have been identified:\n\n* The absence of a police report, which is a requirement for coverage under this policy.\n* The lack of witness statements, which could indicate that the theft was staged or fabricated.\n\nThese indicators contribute to a medium risk score of 0.446, suggesting that further investigation may be warranted to verify the authenticity of the claim.",
+      "explanation": "Fraud/risk indicators for this claim include the absence of a police report and the lack of witnesses, both of which are flagged by the system\u2019s rule engine. The machine\u2011learning model assigned a medium risk score of 0.446, reflecting these missing documentation elements. The claim is otherwise covered under the policy for vehicle theft over $15,000, but the noted gaps warrant further review.",
       "source": "llm"
     },
     "S10": {
       "package_path": "outputs/TC3_package.json",
-      "suggested_next_action": "Review supporting documents"
+      "suggested_next_action": "Review supporting documents",
+      "review_id": "R-5fb78a"
     }
   },
   "errors": [],
   "retries": {},
   "human_actions": [
     {
-      "ts": "2026-10-06T19:11:07",
+      "ts": "2026-10-31T12:57:28",
       "reviewer": "adjuster_1",
       "note": "police report received by email",
       "previous_status": "ROUTED_TO_HUMAN",
@@ -105,11 +106,14 @@
   ],
   "metrics": {
     "llm_calls": 2,
-    "llm_latency_ms": 47202,
-    "prompt_tokens": 519,
-    "output_tokens": 160,
-    "pipeline_ms": 47231
+    "llm_latency_ms": 31384,
+    "prompt_tokens": 632,
+    "output_tokens": 547,
+    "pipeline_ms": 31527
   },
-  "started_at": "2026-10-06T19:03:17",
-  "updated_at": "2026-10-06T19:11:21"
+  "started_at": "2026-10-31T12:51:27",
+  "updated_at": "2026-10-31T12:57:41",
+  "retry_history": [
+    {}
+  ]
 }

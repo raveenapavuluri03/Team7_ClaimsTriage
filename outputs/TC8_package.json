@@ -18,7 +18,7 @@
     "amount": 77000.0,
     "police_report": "UNKNOWN",
     "vehicle": "2004 Accura RSX",
-    "summary": "A single vehicle collision occurred in Riverwood, NY, involving a 2004 Accura RSX."
+    "summary": "A 2004 Accura RSX was involved in a single vehicle collision in Riverwood, NY, resulting in total loss."
   },
   "form_claimed_amount": 77000.0,
   "coverage": {
@@ -37,7 +37,7 @@
       "Claim amount above $60,000"
     ]
   },
-  "risk_explanation": "Based on the provided information, two potential fraud/risk indicators have been identified for this claim:\n\n1. The absence of a police report on file may indicate that the incident was not reported to law enforcement or that the report is missing.\n2. The claim amount exceeding $60,000 suggests that the damages may be higher than average for a 2004 Accura RSX, which could potentially raise suspicions about the extent of the damage.\n\nThese indicators are based on the data and do not imply any intentional wrongdoing by the policyholder.",
+  "risk_explanation": "Fraud/risk indicators for this claim include the absence of a police report on file and the claim amount exceeding $60,000, both of which are flagged by the system. The risk score of 0.279 (low) is derived from a logistic regression model, but the rule flags suggest potential red flags that warrant further review. These indicators should be considered in the context of the overall claim investigation.",
   "suggested_next_action": "Standard review",
   "decision": "PENDING - human adjuster must approve or deny"
 }

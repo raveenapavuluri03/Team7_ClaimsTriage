@@ -1,0 +1,113 @@
+{
+  "run_id": "5e7bf8d5",
+  "claim_id": "M3-B",
+  "status": "DENIED",
+  "current_step": "S10",
+  "status_reason": "Payout rejected by reviewer; no payment made.",
+  "input": {
+    "claim_id": "M3-B",
+    "policy_number": 429027,
+    "form_incident_date": "2015-02-27",
+    "form_claimed_amount": 51590.0,
+    "narrative": "On February 27, 2015, around 23:00, my 2015 Audi A5 was involved in a multi-vehicle collision in Columbus, VA. It resulted in total loss and 2 people were injured. There were 2 witnesses. The police came to the scene and filed a report. I am claiming $51,590 for repairs and related costs."
+  },
+  "config": {
+    "prompt_version": "B",
+    "model": null,
+    "force_bad_json": false,
+    "force_api_fail": false,
+    "force_model_fail": false
+  },
+  "results": {
+    "S1": {
+      "missing_fields": []
+    },
+    "S2": {
+      "policy_number": 429027,
+      "tier": "Auto Basic",
+      "limit": 100000,
+      "report_threshold": 10000,
+      "deductible": 1000.0,
+      "bind_date": "1990-02-03",
+      "annual_premium": 1137.03,
+      "relevant_clauses": [
+        "Documentation: vehicle theft and parked car claims above $10,000 require a police report; otherwise an adjuster must review.",
+        "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft.",
+        "Deductible: the deductible on the policy record is subtracted from every covered payout."
+      ]
+    },
+    "S3": {
+      "extracted": {
+        "incident_date": "2015-02-27",
+        "incident_type": "Multi-vehicle Collision",
+        "amount": 51590.0,
+        "police_report": "YES",
+        "vehicle": "2015 Audi A5",
+        "summary": "A 2015 Audi A5 was involved in a multi-vehicle collision in Columbus, VA, resulting in total loss and injuries to two people."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw": "{\"incident_date\":\"2015-02-27\",\"incident_type\":\"Multi-vehicle Collision\",\"amount\":51590,\"police_report\":\"YES\",\"vehicle\":\"2015 Audi A5\",\"summary\":\"A 2015 Audi A5 was involved in a multi-vehicle collision in Columbus, VA, resulting in total loss and injuries to two people.\"}",
+          "valid": true,
+          "error": null
+        }
+      ]
+    },
+    "S4": {
+      "issues": []
+    },
+    "S5": {
+      "result": "COVERED",
+      "payout": 50590.0,
+      "reasons": [
+        "Covered under Auto Basic; payout = claim - deductible."
+      ]
+    },
+    "S6": {
+      "features_built": true,
+      "source": "policy/claims record + extracted fields"
+    },
+    "S7": {
+      "score": 0.165,
+      "method": "ml_logistic_regression",
+      "rule_score": 0,
+      "flags": [],
+      "band": "LOW"
+    },
+    "S8": {
+      "valid": true,
+      "band": "LOW"
+    },
+    "S9": {
+      "explanation": "The claim\u2019s risk score of 0.165 (low) and the absence of rule flags suggest no immediate red flags from the automated screening. Typical fraud indicators for multi\u2011vehicle collisions\u2014such as conflicting statements, staged damage, or unusually high injury claims\u2014were not detected in the available police report or initial documentation. Nonetheless, the presence of injuries and a total loss still warrants standard post\u2011incident verification steps to confirm the reported damages and injury details.",
+      "source": "llm"
+    },
+    "S10": {
+      "package_path": "outputs/M3-A_package.json",
+      "suggested_next_action": "Standard review",
+      "review_id": "R-3bf321"
+    }
+  },
+  "errors": [],
+  "retries": {},
+  "human_actions": [
+    {
+      "ts": "2026-10-31T12:48:34",
+      "reviewer": "adjuster_1",
+      "action": "REJECT",
+      "review_id": "R-3bf321",
+      "content_version": "f4335fb61bfc",
+      "note": "test"
+    }
+  ],
+  "metrics": {
+    "llm_calls": 2,
+    "llm_latency_ms": 60232,
+    "prompt_tokens": 632,
+    "output_tokens": 526,
+    "pipeline_ms": 61538
+  },
+  "started_at": "2026-10-31T12:47:33",
+  "updated_at": "2026-10-31T12:48:34"
+}

@@ -10,4 +10,5 @@ venv/
 # Run outputs
 
 # Mac
-.DS_Store
+.DS_Storedb/
+inbox/processed/

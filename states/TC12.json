@@ -1,9 +1,9 @@
 {
-  "run_id": "e6d86edc",
+  "run_id": "f5764b2f",
   "claim_id": "TC12",
   "status": "COMPLETED_PENDING_ADJUSTER",
   "current_step": "S10",
-  "status_reason": "Review package ready; waiting for adjuster decision (H2).",
+  "status_reason": "Review package ready; review R-879a84 waiting for a decision (H2).",
   "input": {
     "claim_id": "TC12",
     "policy_number": 319232,
@@ -43,12 +43,12 @@
         "amount": 90000.0,
         "police_report": "YES",
         "vehicle": "2015 Ford Fusion",
-        "summary": "A single vehicle collision occurred in Hillsdale, NY, involving a 2015 Ford Fusion with minor damage and one injured person."
+        "summary": "A 2015 Ford Fusion was involved in a single vehicle collision in Hillsdale, NY, resulting in minor damage and one injury."
       },
       "attempts": [
         {
           "attempt": 1,
-          "raw": "{\n  \"incident_date\": \"2015-01-17\",\n  \"incident_type\": \"Single Vehicle Collision\",\n  \"amount\": 90000,\n  \"police_report\": \"YES\",\n  \"vehicle\": \"2015 Ford Fusion\",\n  \"summary\": \"A single vehicle collision occurred in Hillsdale, NY, involving a 2015 Ford Fusion with minor damage and one injured person.\"\n}",
+          "raw": "{\"incident_date\":\"2015-01-17\",\"incident_type\":\"Single Vehicle Collision\",\"amount\":90000,\"police_report\":\"YES\",\"vehicle\":\"2015 Ford Fusion\",\"summary\":\"A 2015 Ford Fusion was involved in a single vehicle collision in Hillsdale, NY, resulting in minor damage and one injury.\"}",
           "valid": true,
           "error": null
         }
@@ -82,12 +82,13 @@
       "band": "LOW"
     },
     "S9": {
-      "explanation": "Based on the provided information, the following fraud/risk indicators are present:\n\nThe claim amount exceeds $60,000, which may indicate a potential over-estimation of damages or an attempt to inflate the claim value. Additionally, the risk score is 0.206, classified as LOW, but this may warrant further investigation due to the high claim amount.",
+      "explanation": "The claim\u2019s risk score is low (0.206) according to the logistic\u2011regression model, yet the rule engine flagged the claim amount as exceeding $60,000, which is unusually high for a single\u2011vehicle collision with minor damage and a single injury. The presence of a police report and the fact that the vehicle is a 2015 Ford Fusion under standard auto coverage provide context for the claim, but the high payout relative to the reported damage is a potential fraud or over\u2011claim indicator that warrants further review.",
       "source": "llm"
     },
     "S10": {
       "package_path": "outputs/TC12_package.json",
-      "suggested_next_action": "Standard review"
+      "suggested_next_action": "Standard review",
+      "review_id": "R-879a84"
     }
   },
   "errors": [],
@@ -95,11 +96,11 @@
   "human_actions": [],
   "metrics": {
     "llm_calls": 2,
-    "llm_latency_ms": 46079,
-    "prompt_tokens": 522,
-    "output_tokens": 157,
-    "pipeline_ms": 46108
+    "llm_latency_ms": 33332,
+    "prompt_tokens": 635,
+    "output_tokens": 518,
+    "pipeline_ms": 33622
   },
-  "started_at": "2026-10-06T19:08:48",
-  "updated_at": "2026-10-06T19:09:34"
+  "started_at": "2026-10-31T12:55:19",
+  "updated_at": "2026-10-31T12:55:53"
 }

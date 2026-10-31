@@ -3,8 +3,11 @@ an LLM outage, a risk-model failure and the final adjuster decision (H2).
 Writes results/test_results.csv and prints a metrics summary."""
 import os
 import pandas as pd
-from src.pipeline import adjuster_decision, resume_claim, run_claim
+from src import review, store
+from src.pipeline import resume_claim, run_claim
+from src.state import load_state
 
+store.reset()                       # clean review/payment database for a repeatable run
 claims = pd.read_csv("data/test_claims.csv")
 os.makedirs("results", exist_ok=True)
 rows = []
@@ -62,9 +65,11 @@ state = resume_claim("TC5", reviewer="adjuster_1", note="invoice confirms form a
                      corrected_fields={"amount": float(tc5["form_claimed_amount"])})
 record("resume", "TC5 after reviewer corrects amount", "COMPLETED_PENDING_ADJUSTER", state)
 
-# ---- Part 4: final adjuster decision (H2, simulated) ----
-state = adjuster_decision("TC1", "APPROVE", reviewer="adjuster_1", note="documents complete")
-record("decision", "TC1 adjuster approves", "APPROVED", state)
+# ---- Part 4: final adjuster decision (H2: real review event, see run_m3_tests.py for the full M3 tests) ----
+rv = review.open_review_for("TC1")
+outcome = review.handle_event(review.make_event(rv["review_id"], "APPROVE", "adjuster_1", "documents complete"))
+state = load_state("TC1")
+record("decision", "TC1 adjuster approves -> payment recorded", "PAID", state, note=f"event outcome: {outcome}")
 
 # ---- Summary ----
 df = pd.DataFrame(rows)
@@ -82,4 +87,4 @@ if len(done):
     print(f"Avg processing time per completed claim: {done['pipeline_s'].mean():.1f} s "
           f"(manual baseline: 3-5 business days)")
     print(f"Avg LLM calls / output tokens per completed claim: {done['llm_calls'].mean():.1f} / {done['output_tokens'].mean():.0f}")
-print("Saved: results/test_results.csv, logs/run_log.jsonl, states/, outputs/")
+print("Saved: results/test_results.csv, db/triage.db, logs/run_log.jsonl, states/, outputs/")
