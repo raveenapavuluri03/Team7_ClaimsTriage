@@ -1,4 +1,3 @@
-cat > README.md <<'EOF'
 # Team 7 – Insurance Claims Intake Triage (MSA 8770, Milestone 3)
 
 Prototype workflow that turns a submitted insurance claim (form fields + free-text narrative) into a
@@ -193,4 +192,3 @@ The team ran all tests and checked the results. Full details are in the Mileston
 - Test narratives are synthetic and cleaner than real customer text.
 - Not tested: two workers running at the same time, a real payment API, and real human reviewers.
 - Governance, security and the risk assessment are left for Milestone 4.
-EOF
