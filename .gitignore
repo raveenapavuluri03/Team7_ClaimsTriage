@@ -12,3 +12,6 @@ venv/
 # Mac
 .DS_Storedb/
 inbox/processed/
+
+db/
+inbox/processed/
