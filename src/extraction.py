@@ -83,7 +83,7 @@ def parse_and_validate(text):
     Returns (validated_dict, None) or (None, error_message)."""
     if not text or not text.strip():
         return None, "empty response"
-    cleaned = re.sub(r"^```(json)?|```$", "", text.strip(), flags=re.MULTILINE).strip()
+    cleaned = re.sub(r"^(json)?|$", "", text.strip(), flags=re.MULTILINE).strip()
     try:
         data = json.loads(cleaned)
     except json.JSONDecodeError as e:
@@ -116,4 +116,10 @@ def cross_check(extracted, form, tolerance=0.05):
         fa = None
     if fa and ea is not None and abs(ea - fa) / fa > tolerance:
         issues.append(f"Amount mismatch: narrative ${ea:,.0f} vs form ${fa:,.0f} (>{tolerance:.0%})")
+    # M4 second layer against hidden instructions: if the claim form says whether a police report was filed,
+    # the model's reading of the narrative must agree. The form field is optional (older claims lack it).
+    fp = str(form.get("form_police_report") or "").strip().upper()
+    ep = str(extracted.get("police_report") or "").strip().upper()
+    if fp in ("YES", "NO") and ep in ("YES", "NO") and fp != ep:
+        issues.append(f"Police report mismatch: narrative {ep} vs form {fp}")
     return issues

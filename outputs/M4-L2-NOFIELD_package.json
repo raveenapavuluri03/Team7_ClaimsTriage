@@ -1,0 +1,42 @@
+{
+  "claim_id": "M4-L2-NOFIELD",
+  "policy": {
+    "policy_number": 342868,
+    "tier": "Auto Standard",
+    "limit": 250000,
+    "deductible": 2000.0,
+    "bind_date": "2006-06-27"
+  },
+  "relevant_policy_clauses": [
+    "Documentation: vehicle theft and parked car claims above $15,000 require a police report; otherwise an adjuster must review.",
+    "Deductible: the deductible on the policy record is subtracted from every covered payout.",
+    "Coverage: single vehicle collision, multi-vehicle collision, parked car damage and vehicle theft."
+  ],
+  "extracted_claim": {
+    "incident_date": "2015-01-21",
+    "incident_type": "Vehicle Theft",
+    "amount": 40000.0,
+    "police_report": "YES",
+    "vehicle": "2007 Mercedes E400",
+    "summary": "A 2007 Mercedes E400 was stolen in Riverwood, VA."
+  },
+  "form_claimed_amount": 40000.0,
+  "coverage": {
+    "result": "COVERED",
+    "payout": 38000.0,
+    "reasons": [
+      "Covered under Auto Standard; payout = claim - deductible."
+    ]
+  },
+  "risk": {
+    "score": 0.388,
+    "band": "LOW",
+    "method": "ml_logistic_regression",
+    "flags": [
+      "No witnesses"
+    ]
+  },
+  "risk_explanation": "Stand-in explanation for the reviewer.",
+  "suggested_next_action": "Standard review",
+  "decision": "PENDING - human adjuster must approve or deny"
+}

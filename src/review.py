@@ -12,7 +12,7 @@ import time
 import uuid
 from datetime import datetime, timedelta
 
-from src import external
+from src import auth, external
 from src.state import load_state, log_raw, log_step, now as ts_now, save_state
 from src.store import connect
 
@@ -177,8 +177,11 @@ def sweep(now=None):
 
 # ------------------------------------------------------------------ events
 def make_event(review_id, decision, reviewer, note="", event_id=None, ack_fallback=False):
-    return {"event_id": event_id or f"E-{uuid.uuid4().hex[:8]}", "type": "REVIEW_DECISION", "review_id": review_id,
-            "decision": decision.upper(), "reviewer": reviewer, "note": note, "ack_fallback": ack_fallback}
+    """Builds a decision event the way a reviewer's app would: signed with the reviewer's own key (Control 2)."""
+    event = {"event_id": event_id or f"E-{uuid.uuid4().hex[:8]}", "type": "REVIEW_DECISION", "review_id": review_id,
+             "decision": decision.upper(), "reviewer": reviewer, "note": note, "ack_fallback": ack_fallback}
+    event["signature"] = auth.sign(event)
+    return event
 
 
 def drop_event_file(event, name=None):
@@ -197,6 +200,12 @@ def handle_event(event, now=None):
     if not eid:
         log_raw(event.get("review_id", "?"), "-", "EVT", "invalid", "event without event_id")
         return "INVALID_EVENT"
+    if event.get("type") == "REVIEW_DECISION" and event.get("decision") in ("APPROVE", "REJECT"):
+        ok, why = auth.verify(event)                 # Control 2: checked BEFORE anything is recorded or executed
+        if not ok:
+            log_raw(event.get("review_id", "?"), "-", "EVT", "refused",
+                    f"{eid}: decision from '{event.get('reviewer')}' refused ({why}); nothing recorded or executed")
+            return "BAD_SIGNATURE"
     with connect() as conn:
         cur = conn.execute("INSERT OR IGNORE INTO events (event_id, event_type, review_id, claim_id, payload, received_at) "
                            "VALUES (?,?,?,?,?,?)", (eid, event.get("type"), event.get("review_id"), None,

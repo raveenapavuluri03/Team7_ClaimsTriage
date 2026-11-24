@@ -7,6 +7,7 @@ import time
 
 from src.data_prep import load_claims
 from src import review
+from src.guard import scan_narrative
 from src.extraction import build_prompt, cross_check, parse_and_validate
 from src.llm import llm_with_meta
 from src.policies import check_coverage, retrieve_policy
@@ -72,7 +73,14 @@ def s1_validate_input(state):
         state["status_reason"] = f"Missing required fields: {gaps}. Request them from the customer."
         log_step(state, "S1", "fail", state["status_reason"])
         return "PAUSED_MISSING_INFO"
-    log_step(state, "S1", "ok", "all required fields present")
+    findings = scan_narrative(claim["narrative"])           # Control 1: untrusted-content guard (no model involved)
+    state["results"]["S1"]["guard_findings"] = findings
+    if findings:
+        state["status_reason"] = ("Narrative blocked before any model call (" + ", ".join(findings) +
+                                  "). Routed to human exception review (H1).")
+        log_step(state, "S1", "blocked", state["status_reason"])
+        return "ROUTED_TO_HUMAN"
+    log_step(state, "S1", "ok", "all required fields present; narrative passed the injection guard")
 
 
 def s2_retrieve_policy(state):
